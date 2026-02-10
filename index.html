@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💘 Une conversation sincère avec STELLA MARIE</title>
+    <title>Pour Stella Marie 💘</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,46 +14,61 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+            background: linear-gradient(135deg, #fff0f7 0%, #fff5f0 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            color: #444;
+            padding: 15px;
+            color: #5a4a4a;
+            overflow-x: hidden;
         }
 
-        /* Papier lettre effet */
+        /* Conteneur principal - Optimisé mobile */
         .letter-container {
             background: white;
-            border-radius: 15px;
-            padding: 50px 40px;
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.08),
-                0 0 0 1px rgba(255, 182, 193, 0.1),
-                inset 0 0 50px rgba(255, 228, 225, 0.3);
-            max-width: 650px;
             width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 
+                0 10px 30px rgba(255, 107, 139, 0.15),
+                0 0 0 1px rgba(255, 182, 193, 0.2),
+                inset 0 0 30px rgba(255, 228, 225, 0.3);
             position: relative;
             border: 1px solid rgba(255, 182, 193, 0.3);
+            margin: 15px;
         }
 
-        .letter-container:before {
-            content: '';
+        /* Cachet de cire */
+        .wax-seal {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px dashed rgba(255, 182, 193, 0.2);
-            pointer-events: none;
-            border-radius: 8px;
+            top: -20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ff6b8b 0%, #d87093 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
+            border: 2px solid white;
+            z-index: 10;
+            animation: heartbeat 1.5s infinite;
         }
 
-        /* En-tête lettre */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* En-tête */
         .letter-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             padding-bottom: 20px;
         }
@@ -62,38 +77,39 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 25%;
-            right: 25%;
+            left: 20%;
+            right: 20%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #ffb6c1, transparent);
+            background: linear-gradient(90deg, #ffb6c1, #ff8fa3, #ffb6c1);
+            border-radius: 1px;
         }
 
         .greeting {
-            font-size: 2.8em;
-            color: #d87093;
-            margin-bottom: 10px;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-size: 2em;
+            color: #ff6b8b;
+            margin-bottom: 5px;
+            font-weight: 600;
+            line-height: 1.2;
         }
 
         .date {
             color: #999;
-            font-style: italic;
             font-size: 0.9em;
+            font-style: italic;
         }
 
         /* Questions */
         .question-card {
-            background: #fef9fb;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 25px 0;
-            border-left: 4px solid #ffb6c1;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-            transition: all 0.4s ease;
+            background: #fff9fb;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ffccd5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s forwards;
+            transform: translateY(15px);
+            animation: fadeInUp 0.5s forwards;
         }
 
         @keyframes fadeInUp {
@@ -104,133 +120,107 @@
         }
 
         .question-number {
-            display: inline-block;
-            background: #ffb6c1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff6b8b, #ff8fa3);
             color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            margin-right: 15px;
+            border-radius: 10px;
+            margin-right: 12px;
             font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(255, 107, 139, 0.3);
         }
 
         .question-text {
-            font-size: 1.3em;
-            line-height: 1.6;
+            font-size: 1.1em;
+            line-height: 1.5;
             color: #555;
-            margin-bottom: 25px;
-            padding-left: 45px;
+            margin: 10px 0 20px;
+            padding-left: 44px;
         }
 
-        /* Boutons doux */
+        /* Boutons optimisés mobile */
         .response-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            flex-direction: column;
+            gap: 10px;
             margin-top: 15px;
-            flex-wrap: wrap;
         }
 
         .response-btn {
-            padding: 14px 35px;
+            padding: 14px 20px;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1em;
+            border-radius: 12px;
+            font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
-            min-width: 160px;
             justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            width: 100%;
             position: relative;
             overflow: hidden;
         }
 
-        .response-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-
-        .response-btn:hover:before {
-            left: 100%;
-        }
-
         .btn-agree {
-            background: linear-gradient(45deg, #ffb6c1, #ffccd5);
-            color: #8b5a5a;
-            border: 1px solid rgba(255, 182, 193, 0.3);
+            background: linear-gradient(135deg, #ff6b8b, #ff8fa3);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.25);
         }
 
-        .btn-agree:hover {
-            background: linear-gradient(45deg, #ffccd5, #ffb6c1);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+        .btn-agree:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(255, 107, 139, 0.2);
         }
 
         .btn-reserved {
-            background: rgba(255, 255, 255, 0.8);
-            color: #888;
-            border: 1px solid rgba(200, 200, 200, 0.5);
-        }
-
-        .btn-reserved:hover {
             background: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            color: #666;
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
 
-        /* Fleurs décoratives */
-        .flower {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.2;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
+        .btn-reserved:active {
+            transform: scale(0.98);
+            background: #f9f9f9;
         }
 
         /* Progression */
         .progress {
             text-align: center;
             margin-top: 30px;
-            color: #aaa;
-            font-size: 0.9em;
+            color: #999;
+            font-size: 0.85em;
         }
 
         .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: #f0f0f0;
-            margin: 10px auto;
-            border-radius: 2px;
+            width: 100%;
+            height: 6px;
+            background: rgba(240, 240, 240, 0.8);
+            margin: 8px 0;
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ffb6c1, #ffccd5);
+            background: linear-gradient(90deg, #ff6b8b, #ff8fa3);
             width: 0%;
-            transition: width 1s ease;
+            transition: width 0.5s ease;
         }
 
-        /* Final message */
+        /* Message final */
         .final-message {
             display: none;
             text-align: center;
-            padding: 40px;
-            animation: fadeIn 1s ease;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
@@ -239,21 +229,129 @@
         }
 
         .final-heart {
-            font-size: 80px;
+            font-size: 60px;
             color: #ff6b8b;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        /* WhatsApp */
+        .whatsapp-secret {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        .secret-code {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            word-break: break-word;
+            user-select: all;
+        }
+
+        .copy-btn {
+            background: white;
+            color: #25D366;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Message humble */
+        .humble-message {
+            background: #fff9fb;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #ffccd5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            line-height: 1.5;
+        }
+
+        /* Animation simple pour mobile */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatUp 5s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Support toutes les tailles d'écran */
+        @media (min-width: 400px) {
             .letter-container {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
             
             .greeting {
@@ -261,54 +359,100 @@
             }
             
             .question-text {
-                font-size: 1.1em;
-                padding-left: 40px;
-            }
-            
-            .response-btn {
-                padding: 12px 25px;
-                min-width: 140px;
-                font-size: 1em;
+                font-size: 1.15em;
             }
             
             .response-buttons {
-                gap: 10px;
+                flex-direction: row;
+            }
+            
+            .response-btn {
+                width: auto;
+                min-width: 140px;
             }
         }
 
-        @media (max-width: 480px) {
-            .response-buttons {
-                flex-direction: column;
-                align-items: center;
+        @media (min-width: 600px) {
+            .letter-container {
+                max-width: 550px;
+                padding: 40px 35px;
+            }
+            
+            .greeting {
+                font-size: 2.5em;
+            }
+            
+            .question-text {
+                font-size: 1.2em;
             }
             
             .response-btn {
-                width: 100%;
-                max-width: 280px;
+                padding: 16px 25px;
+                font-size: 1.05em;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .greeting {
+                font-size: 1.8em;
             }
             
             .question-text {
                 padding-left: 0;
-                margin-top: 15px;
+                margin-top: 10px;
             }
+            
+            .secret-code {
+                font-size: 1em;
+                letter-spacing: 1px;
+                padding: 10px;
+            }
+        }
+
+        /* Support orientation paysage */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 10px;
+            }
+            
+            .letter-container {
+                max-width: 90%;
+                padding: 20px;
+                margin: 5px;
+            }
+            
+            .greeting {
+                font-size: 1.8em;
+            }
+            
+            .question-card {
+                padding: 15px;
+                margin: 10px 0;
+            }
+        }
+
+        /* Prévention du zoom sur iOS */
+        input, textarea, select, button {
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <!-- Fleurs décoratives -->
-    <div class="flower" style="top: 10%; left: 5%;">🌸</div>
-    <div class="flower" style="top: 20%; right: 10%;">🌺</div>
-    <div class="flower" style="bottom: 30%; left: 15%;">🌼</div>
-    <div class="flower" style="bottom: 20%; right: 5%;">💮</div>
+    <!-- Cœurs flottants simples -->
+    <div class="floating-hearts" id="floatingHearts"></div>
 
     <div class="letter-container">
+        <div class="wax-seal">
+            ❤️
+        </div>
+
         <div class="letter-header">
-            <div class="greeting">Chère STELLA MARIE</div>
-            <div class="date">Une lettre sincère de SÉRAPHIN</div>
+            <div class="greeting">Chère Stella Marie</div>
+            <div class="date">Quelques mots sincères...</div>
         </div>
 
         <!-- Question 1 -->
-        <div class="question-card" id="question1" style="animation-delay: 0.3s;">
+        <div class="question-card" id="question1" style="animation-delay: 0.2s;">
             <div>
                 <span class="question-number">1</span>
                 <span class="question-text">
@@ -326,7 +470,7 @@
         </div>
 
         <!-- Question 2 -->
-        <div class="question-card" id="question2" style="display: none; animation-delay: 0.3s;">
+        <div class="question-card" id="question2" style="display: none; animation-delay: 0.2s;">
             <div>
                 <span class="question-number">2</span>
                 <span class="question-text">
@@ -344,7 +488,7 @@
         </div>
 
         <!-- Question 3 -->
-        <div class="question-card" id="question3" style="display: none; animation-delay: 0.3s;">
+        <div class="question-card" id="question3" style="display: none; animation-delay: 0.2s;">
             <div>
                 <span class="question-number">3</span>
                 <span class="question-text">
@@ -361,24 +505,29 @@
             </div>
         </div>
 
-        <!-- Proposition finale (cachée) -->
+        <!-- Message final -->
         <div class="final-message" id="finalMessage">
             <div class="final-heart">💖</div>
-            <h2 style="color: #d87093; margin-bottom: 20px;">Merci pour ces réponses...</h2>
-            <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 25px;">
-                Ces moments de partage me font réaliser à quel point j'aimerais te connaître mieux.<br>
-                Avec toute la douceur et le respect que tu mérites...
-            </p>
-            <div style="background: #fef9fb; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px dashed #ffb6c1;">
-                <p style="font-size: 1.3em; color: #d87093; font-weight: bold; margin-bottom: 10px;">
-                    Accepterais-tu que nous prenions le temps<br>de nous découvrir vraiment ?
+            <h2 style="color: #ff6b8b; margin-bottom: 15px; font-size: 1.4em;">
+                Merci pour tes réponses...
+            </h2>
+            
+            <div class="humble-message">
+                <p style="color: #666; margin-bottom: 10px;">
+                    Ces moments de partage me font réaliser à quel point j'aimerais te connaître mieux.
                 </p>
-                <p style="font-style: italic; color: #888;">
-                    Pas comme une simple Valentine...<br>Mais comme le début de quelque chose de sincère ?
+                <p style="color: #ff6b8b; font-weight: 500;">
+                    Je ne suis peut-être pas parfait, mais je veux une histoire vraie et sincère avec toi.
                 </p>
             </div>
-            <div class="response-buttons" style="margin-top: 30px;">
-                <button class="response-btn btn-agree" onclick="accepterProposition()" style="background: linear-gradient(45deg, #d87093, #ff6b8b); color: white; padding: 16px 45px;">
+
+            <p style="color: #666; margin: 25px 0; font-size: 1.1em;">
+                Veux-tu qu'on prenne le temps de se découvrir vraiment ?
+            </p>
+
+            <div class="response-buttons">
+                <button class="response-btn btn-agree" onclick="accepterProposition()" 
+                        style="background: linear-gradient(135deg, #d87093, #ff6b8b);">
                     <i class="fas fa-check-circle"></i> Oui, avec plaisir
                 </button>
                 <button class="response-btn btn-reserved" onclick="refuserProposition()">
@@ -389,11 +538,10 @@
 
         <!-- Progression -->
         <div class="progress">
-            <div>Conversation</div>
+            <div id="progressText">Question 1/3</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div id="progressText">Question 1/3</div>
         </div>
     </div>
 
@@ -401,112 +549,105 @@
         let currentQuestion = 1;
         let positiveAnswers = 0;
         const totalQuestions = 3;
+        const secretCode = "STELLA MARIE ❤️ SERAPHIN.K";
 
-        // Initialiser les fleurs
-        function initFlowers() {
-            const flowers = document.querySelectorAll('.flower');
-            flowers.forEach((flower, index) => {
-                flower.style.animationDelay = `${index * 1.5}s`;
-            });
+        // Initialiser les cœurs flottants
+        function initFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Afficher notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
         }
 
         // Répondre à une question
         function repondreQuestion(questionNum, isPositive) {
             const currentCard = document.getElementById(`question${questionNum}`);
             
-            // Animation de réponse
-            currentCard.style.transform = 'translateY(-10px)';
-            currentCard.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+            // Effet tactile
+            currentCard.style.transform = 'scale(0.98)';
             
             setTimeout(() => {
                 currentCard.style.transform = '';
-                currentCard.style.boxShadow = '';
-            }, 300);
+            }, 200);
             
-            // Mettre à jour le score
             if (isPositive) positiveAnswers++;
             
-            // Passer à la question suivante
             currentQuestion++;
-            
-            // Mettre à jour la progression
             updateProgress();
             
-            // Attendre un peu puis afficher la prochaine question
             setTimeout(() => {
                 if (currentQuestion <= totalQuestions) {
-                    // Cacher la question actuelle
                     currentCard.style.opacity = '0';
-                    currentCard.style.transform = 'translateY(-20px)';
+                    currentCard.style.transform = 'translateY(-10px)';
                     
                     setTimeout(() => {
                         currentCard.style.display = 'none';
                         
-                        // Afficher la prochaine question
                         const nextCard = document.getElementById(`question${currentQuestion}`);
                         if (nextCard) {
                             nextCard.style.display = 'block';
                             nextCard.style.opacity = '0';
-                            nextCard.style.transform = 'translateY(20px)';
+                            nextCard.style.transform = 'translateY(10px)';
                             
                             setTimeout(() => {
                                 nextCard.style.opacity = '1';
                                 nextCard.style.transform = 'translateY(0)';
                             }, 50);
                         }
-                    }, 400);
+                    }, 300);
                 } else {
-                    // Toutes les questions sont répondues
                     showFinalProposition();
                 }
-            }, 800);
+            }, 500);
         }
 
-        // Mettre à jour la barre de progression
+        // Mettre à jour la progression
         function updateProgress() {
-            const progress = (currentQuestion - 1) / totalQuestions * 100;
-            document.getElementById('progressFill').style.width = `${progress}%`;
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
             document.getElementById('progressText').textContent = 
                 currentQuestion <= totalQuestions ? 
                 `Question ${currentQuestion}/${totalQuestions}` : 
-                'Conversation terminée';
+                'Terminé';
         }
 
         // Montrer la proposition finale
         function showFinalProposition() {
-            // Cacher toutes les questions
+            // Cacher les questions
             for (let i = 1; i <= totalQuestions; i++) {
                 const card = document.getElementById(`question${i}`);
-                if (card) {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(-20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 400);
-                }
+                card.style.display = 'none';
             }
             
-            // Cacher la progression
-            document.querySelector('.progress').style.opacity = '0';
+            // Afficher le message final
             setTimeout(() => {
-                document.querySelector('.progress').style.display = 'none';
+                const finalMessage = document.getElementById('finalMessage');
+                finalMessage.style.display = 'block';
                 
-                // Afficher le message final avec un délai
-                setTimeout(() => {
-                    const finalMessage = document.getElementById('finalMessage');
-                    finalMessage.style.display = 'block';
-                    finalMessage.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        finalMessage.style.opacity = '1';
-                        finalMessage.style.transform = 'translateY(0)';
-                        
-                        // Animation spéciale selon les réponses
-                        if (positiveAnswers >= 2) {
-                            createFloatingHearts();
-                        }
-                    }, 100);
-                }, 500);
+                if (positiveAnswers >= 2) {
+                    createHearts();
+                }
             }, 400);
         }
 
@@ -514,150 +655,151 @@
         function accepterProposition() {
             const finalMessage = document.getElementById('finalMessage');
             finalMessage.innerHTML = `
-                <div style="text-align: center; animation: fadeIn 1s;">
-                    <div style="font-size: 100px; color: #ff6b8b; margin-bottom: 20px;">
-                        ✨💖✨
+                <div style="text-align: center;">
+                    <div style="font-size: 70px; color: #ff6b8b; margin-bottom: 20px; animation: pulse 2s infinite;">
+                        💕
                     </div>
-                    <h2 style="color: #d87093; margin-bottom: 20px;">
-                        Merci, STELLA MARIE...
+                    
+                    <h2 style="color: #ff6b8b; margin-bottom: 15px; font-size: 1.5em;">
+                        Merci Stella !
                     </h2>
-                    <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 25px;">
-                        Ton "oui" signifie beaucoup pour moi.<br>
-                        J'ai hâte de te découvrir, avec tout le temps et le respect nécessaires.
-                    </p>
-                    <div style="background: #fef9fb; padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid #ffccd5;">
-                        <p style="font-style: italic; color: #d87093;">
-                            "Les plus belles histoires commencent par une conversation sincère"
+                    
+                    <div class="humble-message">
+                        <p style="color: #666; margin-bottom: 10px;">
+                            Notre histoire commence aujourd'hui.
+                        </p>
+                        <p style="color: #ff6b8b; font-weight: 500;">
+                            Je ne suis peut-être pas parfait, mais je veux une histoire vraie et sincère avec toi.
+                        </p>
+                        <p style="color: #999; margin-top: 10px; font-size: 0.9em;">
+                            Et quand je dis "toi", c'est toi seule.
                         </p>
                     </div>
-                    <p style="color: #888; margin-top: 30px;">
-                        À très bientôt, j'espère...
+                    
+                    <div class="whatsapp-secret">
+                        <h3 style="margin-bottom: 15px; color: white; font-weight: 500;">
+                            <i class="fab fa-whatsapp"></i> Notre mot secret
+                        </h3>
+                        <p style="margin-bottom: 10px;">
+                            Copie ce mot et envoie-le moi sur WhatsApp :
+                        </p>
+                        
+                        <div class="secret-code" onclick="copySecretCode()">
+                            ${secretCode}
+                        </div>
+                        
+                        <p style="margin: 10px 0; font-size: 0.9em; opacity: 0.9;">
+                            Clique sur le code pour le copier
+                        </p>
+                        
+                        <button class="copy-btn" onclick="copySecretCode()">
+                            <i class="fas fa-copy"></i> Copier pour WhatsApp
+                        </button>
+                        
+                        <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
+                            J'attends ton message ! 💚
+                        </p>
+                    </div>
+                    
+                    <p style="color: #999; margin-top: 20px; font-size: 0.9em;">
+                        Je t'aime vraiment.
                     </p>
                 </div>
             `;
             
-            // Célébration
-            createCelebration();
+            createHearts();
         }
 
         // Refuser la proposition
         function refuserProposition() {
             const finalMessage = document.getElementById('finalMessage');
             finalMessage.innerHTML = `
-                <div style="text-align: center; animation: fadeIn 1s;">
-                    <div style="font-size: 80px; color: #aaa; margin-bottom: 20px;">
-                        🌸
+                <div style="text-align: center;">
+                    <div style="font-size: 60px; color: #aaa; margin: 20px 0;">
+                        💫
                     </div>
-                    <h2 style="color: #888; margin-bottom: 20px;">
+                    
+                    <h2 style="color: #888; margin-bottom: 15px; font-size: 1.4em;">
                         Je comprends...
                     </h2>
-                    <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 25px;">
-                        Merci d'avoir partagé ces moments avec moi.<br>
-                        Je respecte ton choix et ton rythme.
-                    </p>
-                    <div style="background: #f9f9f9; padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid #eee;">
-                        <p style="font-style: italic; color: #999;">
-                            "Le respect est le plus beau des compliments"
+                    
+                    <div class="humble-message">
+                        <p style="color: #666; margin-bottom: 10px;">
+                            Je respecte ton choix et ton rythme.
+                        </p>
+                        <p style="color: #999;">
+                            Merci d'avoir pris le temps de répondre.
                         </p>
                     </div>
-                    <p style="color: #aaa; margin-top: 30px;">
-                        Prends soin de toi, STELLA MARIE.
+                    
+                    <p style="color: #aaa; margin-top: 20px; font-size: 0.9em;">
+                        Prends soin de toi, Stella.
                     </p>
                 </div>
             `;
         }
 
-        // Créer des cœurs flottants
-        function createFloatingHearts() {
-            for (let i = 0; i < 15; i++) {
+        // Copier le code secret
+        function copySecretCode() {
+            navigator.clipboard.writeText(secretCode).then(() => {
+                showNotification('✅ Mot copié ! Envoie-le moi sur WhatsApp');
+                
+                // Effet sur le bouton
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copié !';
+                copyBtn.style.background = '#4CAF50';
+                copyBtn.style.color = 'white';
+                
+                // Effet sur le code
+                const codeElement = document.querySelector('.secret-code');
+                codeElement.style.background = 'rgba(76, 175, 80, 0.3)';
+                
+                // Réinitialiser après 3 secondes
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = 'white';
+                    copyBtn.style.color = '#25D366';
+                    codeElement.style.background = 'rgba(255, 255, 255, 0.2)';
+                }, 3000);
+                
+            }).catch(err => {
+                showNotification('⚠️ Copie manuellement : ' + secretCode);
+            });
+        }
+
+        // Créer des cœurs
+        function createHearts() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
                     heart.innerHTML = '💖';
-                    heart.style.position = 'fixed';
                     heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.top = '100vh';
-                    heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
-                    heart.style.opacity = '0.7';
-                    heart.style.zIndex = '1000';
-                    heart.style.pointerEvents = 'none';
-                    document.body.appendChild(heart);
-                    
-                    heart.animate([
-                        { top: '100vh', opacity: 0.7, transform: 'scale(1)' },
-                        { top: '-100px', opacity: 0, transform: 'scale(0.5)' }
-                    ], {
-                        duration: 3000,
-                        easing: 'ease-out'
-                    });
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heart.style.animationDelay = '0s';
+                    heart.style.animationDuration = '3s';
+                    container.appendChild(heart);
                     
                     setTimeout(() => heart.remove(), 3000);
                 }, i * 200);
             }
         }
 
-        // Célébration
-        function createCelebration() {
-            // Sons doux (simulés)
-            const notes = [523.25, 659.25, 783.99];
-            notes.forEach((note, index) => {
-                setTimeout(() => playNote(note, 0.2), index * 300);
-            });
-            
-            // Confettis doux
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const petal = document.createElement('div');
-                    petal.innerHTML = ['🌸', '🌺', '🌼', '💮'][Math.floor(Math.random() * 4)];
-                    petal.style.position = 'fixed';
-                    petal.style.left = Math.random() * 100 + 'vw';
-                    petal.style.top = '-50px';
-                    petal.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    petal.style.opacity = '0.8';
-                    petal.style.zIndex = '999';
-                    petal.style.pointerEvents = 'none';
-                    document.body.appendChild(petal);
-                    
-                    petal.animate([
-                        { top: '-50px', transform: 'rotate(0deg)', opacity: 0.8 },
-                        { top: '100vh', transform: 'rotate(180deg)', opacity: 0 }
-                    ], {
-                        duration: 4000,
-                        easing: 'ease-in'
-                    });
-                    
-                    setTimeout(() => petal.remove(), 4000);
-                }, i * 100);
-            }
-        }
-
-        // Jouer une note (silencieux si non supporté)
-        function playNote(frequency, duration) {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = frequency;
-                oscillator.type = 'sine';
-                
-                gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + duration);
-            } catch (e) {
-                // Ignorer si audio non supporté
-            }
-        }
-
         // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
-            initFlowers();
+            initFloatingHearts();
             updateProgress();
+            
+            // Prévenir le zoom automatique iOS
+            document.addEventListener('touchmove', function(e) {
+                if(e.scale !== 1) e.preventDefault();
+            }, { passive: false });
         });
+
+        // Support tactile amélioré
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
