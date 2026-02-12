@@ -2,804 +2,606 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pour Stella Marie 💘</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Stella ✦</title>
     <style>
+        /* ===== RESET MODERNE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #fff0f7 0%, #fff5f0 100%);
+            background: #0a0806;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            color: #5a4a4a;
+            font-family: system-ui, -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif;
+            padding: 0;
+            position: relative;
             overflow-x: hidden;
         }
 
-        /* Conteneur principal - Optimisé mobile */
-        .letter-container {
-            background: white;
+        /* ===== CANVAS DYNAMIQUE (ULTRA LÉGER) ===== */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 
-                0 10px 30px rgba(255, 107, 139, 0.15),
-                0 0 0 1px rgba(255, 182, 193, 0.2),
-                inset 0 0 30px rgba(255, 228, 225, 0.3);
-            position: relative;
-            border: 1px solid rgba(255, 182, 193, 0.3);
-            margin: 15px;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
         }
 
-        /* Cachet de cire */
-        .wax-seal {
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, #ff6b8b 0%, #d87093 100%);
-            border-radius: 50%;
+        /* ===== CARTE PRINCIPALE ===== */
+        .stack {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: 480px;
+            margin: 16px;
             display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Style carte premium */
+        .card {
+            background: rgba(18, 14, 12, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 28px 24px;
+            border: 1px solid rgba(255, 215, 170, 0.18);
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.7);
+            transition: transform 0.2s ease, border-color 0.2s;
+            color: #faf1e6;
+        }
+
+        .card:active {
+            transform: scale(0.99);
+            border-color: rgba(230, 180, 140, 0.4);
+        }
+
+        /* ===== BADGE INITIALES ===== */
+        .badge {
+            background: rgba(200, 150, 110, 0.15);
+            border: 1px solid rgba(210, 160, 120, 0.4);
+            border-radius: 100px;
+            padding: 8px 20px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: fit-content;
+            margin-bottom: 16px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            color: #eaceba;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ===== TYPOGRAPHIE ===== */
+        .name {
+            font-size: 2.4rem;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 4px;
             color: white;
-            font-size: 22px;
-            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
-            border: 2px solid white;
-            z-index: 10;
-            animation: heartbeat 1.5s infinite;
+            text-shadow: 0 2px 10px rgba(230, 150, 100, 0.3);
+            letter-spacing: -0.5px;
+        }
+
+        .sub {
+            font-size: 0.95rem;
+            color: #d4bcab;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            font-weight: 400;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* ===== MESSAGE DYNAMIQUE (TYPE INSTANT) ===== */
+        .message-bubble {
+            background: rgba(30, 22, 20, 0.7);
+            border-left: 4px solid #c49a6c;
+            border-radius: 20px 20px 20px 4px;
+            padding: 24px;
+            margin: 12px 0 8px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #f0ded2;
+            backdrop-filter: blur(10px);
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #dbb48b;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-top: 1px dashed rgba(200, 160, 120, 0.4);
+            padding-top: 18px;
+        }
+
+        /* ===== GRILLE GIFS - STYLE TIKTOK/PREMIUM ===== */
+        .gif-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 8px;
+            justify-content: center;
+        }
+
+        .gif-tile {
+            flex: 1 1 calc(33.333% - 8px);
+            min-width: 100px;
+            background: #16100e;
+            border-radius: 18px;
+            padding: 8px;
+            border: 1px solid rgba(220, 170, 130, 0.2);
+            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+        }
+
+        .gif-tile:hover, .gif-tile:active {
+            border-color: #d09a70;
+            background: #1f1512;
+            transform: translateY(-3px);
+        }
+
+        .gif-tile img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            background: #231b18;
+        }
+
+        /* ===== COEUR BATTANT 3D ===== */
+        .heart-3d {
+            font-size: 3.2rem;
+            line-height: 1;
+            margin: 12px 0 4px;
+            animation: heartbeat 1.8s infinite cubic-bezier(0.45, 0, 0.55, 1);
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(255, 120, 100, 0.6));
+            transform-origin: center;
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            14% { transform: scale(1.2); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
         }
 
-        /* En-tête */
-        .letter-header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .letter-header:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            right: 20%;
-            height: 2px;
-            background: linear-gradient(90deg, #ffb6c1, #ff8fa3, #ffb6c1);
-            border-radius: 1px;
-        }
-
-        .greeting {
-            font-size: 2em;
-            color: #ff6b8b;
-            margin-bottom: 5px;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        .date {
-            color: #999;
-            font-size: 0.9em;
-            font-style: italic;
-        }
-
-        /* Questions */
-        .question-card {
-            background: #fff9fb;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #ffccd5;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(15px);
-            animation: fadeInUp 0.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .question-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #ff6b8b, #ff8fa3);
-            color: white;
-            border-radius: 10px;
-            margin-right: 12px;
-            font-weight: bold;
-            font-size: 0.9em;
-            box-shadow: 0 3px 10px rgba(255, 107, 139, 0.3);
-        }
-
-        .question-text {
-            font-size: 1.1em;
-            line-height: 1.5;
-            color: #555;
-            margin: 10px 0 20px;
-            padding-left: 44px;
-        }
-
-        /* Boutons optimisés mobile */
-        .response-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .response-btn {
-            padding: 14px 20px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        /* ===== BOUTON ÉTOILE - EFFET LUXE ===== */
+        .star-button {
+            background: linear-gradient(145deg, #2f231f, #1f1714);
+            border: 1px solid rgba(230, 180, 130, 0.3);
+            border-radius: 60px;
+            padding: 16px 28px;
+            width: 100%;
+            color: #fae1cf;
+            font-size: 1.15rem;
             font-weight: 500;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-agree {
-            background: linear-gradient(135deg, #ff6b8b, #ff8fa3);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.25);
-        }
-
-        .btn-agree:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 10px rgba(255, 107, 139, 0.2);
-        }
-
-        .btn-reserved {
-            background: white;
-            color: #666;
-            border: 2px solid rgba(200, 200, 200, 0.4);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-reserved:active {
-            transform: scale(0.98);
-            background: #f9f9f9;
-        }
-
-        /* Progression */
-        .progress {
-            text-align: center;
-            margin-top: 30px;
-            color: #999;
-            font-size: 0.85em;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(240, 240, 240, 0.8);
-            margin: 8px 0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b8b, #ff8fa3);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
-        /* Message final */
-        .final-message {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .final-heart {
-            font-size: 60px;
-            color: #ff6b8b;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
-
-        /* WhatsApp */
-        .whatsapp-secret {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 25px 0;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .secret-code {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 12px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 28px 0 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 0 #0a0706, 0 12px 30px rgba(0,0,0,0.5);
+            transition: all 0.08s linear;
             letter-spacing: 2px;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            word-break: break-word;
-            user-select: all;
-        }
-
-        .copy-btn {
-            background: white;
-            color: #25D366;
             border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            border-top: 1px solid rgba(255,200,150,0.3);
         }
 
-        .copy-btn:active {
-            transform: scale(0.98);
+        .star-button:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #0a0706, 0 12px 30px rgba(0,0,0,0.5);
         }
 
-        /* Message humble */
-        .humble-message {
-            background: #fff9fb;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 2px solid #ffccd5;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            line-height: 1.5;
-        }
-
-        /* Animation simple pour mobile */
-        .floating-hearts {
+        /* ===== ÉTOILES SCINTILLANTES ===== */
+        .twinkle {
             position: fixed;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: 5;
         }
 
-        .floating-heart {
+        .twinkle-star {
             position: absolute;
-            font-size: 20px;
-            opacity: 0;
-            animation: floatUp 5s infinite linear;
+            color: rgba(255, 235, 200, 0.7);
+            font-size: 14px;
+            animation: floatStar 4s infinite alternate ease-in-out;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+        @keyframes floatStar {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100%);
-            background: #25D366;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        /* ===== FOOTER DISCRET ===== */
+        .footer-note {
+            font-size: 0.75rem;
+            color: rgba(180, 150, 130, 0.5);
             text-align: center;
-            max-width: 90%;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            font-weight: 300;
+            text-transform: uppercase;
         }
 
-        .notification.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* Support toutes les tailles d'écran */
-        @media (min-width: 400px) {
-            .letter-container {
-                padding: 35px 25px;
-            }
-            
-            .greeting {
-                font-size: 2.2em;
-            }
-            
-            .question-text {
-                font-size: 1.15em;
-            }
-            
-            .response-buttons {
-                flex-direction: row;
-            }
-            
-            .response-btn {
-                width: auto;
-                min-width: 140px;
-            }
+        /* ===== ADAPTATION TOUS TÉLÉPHONES ===== */
+        @media (max-width: 380px) {
+            .name { font-size: 2rem; }
+            .gif-tile { min-width: calc(50% - 6px); }
+            .card { padding: 22px 18px; }
+            .message-bubble { font-size: 1rem; padding: 20px; }
         }
 
         @media (min-width: 600px) {
-            .letter-container {
-                max-width: 550px;
-                padding: 40px 35px;
-            }
-            
-            .greeting {
-                font-size: 2.5em;
-            }
-            
-            .question-text {
-                font-size: 1.2em;
-            }
-            
-            .response-btn {
-                padding: 16px 25px;
-                font-size: 1.05em;
-            }
+            .stack { max-width: 520px; }
         }
 
-        @media (max-width: 350px) {
-            .greeting {
-                font-size: 1.8em;
-            }
-            
-            .question-text {
-                padding-left: 0;
-                margin-top: 10px;
-            }
-            
-            .secret-code {
-                font-size: 1em;
-                letter-spacing: 1px;
-                padding: 10px;
-            }
+        /* ===== OPTIMISATION NOTCH ===== */
+        @supports (padding: max(0px)) {
+            body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+        }
+        
+        /* ===== DARK MODE NATIF ===== */
+        @media (prefers-color-scheme: dark) {
+            body { background: #080605; }
         }
 
-        /* Support orientation paysage */
-        @media (orientation: landscape) and (max-height: 500px) {
-            body {
-                padding: 10px;
-            }
-            
-            .letter-container {
-                max-width: 90%;
-                padding: 20px;
-                margin: 5px;
-            }
-            
-            .greeting {
-                font-size: 1.8em;
-            }
-            
-            .question-card {
-                padding: 15px;
-                margin: 10px 0;
-            }
+        /* ===== LOADER INSTANTANÉ ===== */
+        .instant-appear {
+            animation: fadeSlide 0.5s ease-out;
         }
 
-        /* Prévention du zoom sur iOS */
-        input, textarea, select, button {
-            font-size: 16px;
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <!-- Cœurs flottants simples -->
-    <div class="floating-hearts" id="floatingHearts"></div>
 
-    <div class="letter-container">
-        <div class="wax-seal">
-            ❤️
-        </div>
+    <!-- CANVAS PARTICULES LÉGER (ADAPTÉ TOUS TÉLÉPHONES) -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- ÉTOILES DISCRÈTES -->
+    <div class="twinkle" id="twinkleContainer"></div>
 
-        <div class="letter-header">
-            <div class="greeting">Chère Stella Marie</div>
-            <div class="date">Quelques mots sincères...</div>
-        </div>
+    <!-- CONTENU PRINCIPAL - STYLE STACK MODERNE -->
+    <div class="stack instant-appear">
 
-        <!-- Question 1 -->
-        <div class="question-card" id="question1" style="animation-delay: 0.2s;">
-            <div>
-                <span class="question-number">1</span>
-                <span class="question-text">
-                    Penses-tu qu'on puisse vraiment apprendre à connaître quelqu'un à travers de petites attentions et des conversations sincères ?
-                </span>
+        <!-- PREMIÈRE CARD : IDENTITÉ + MESSAGE -->
+        <div class="card">
+            <div class="badge">
+                ✦ S.M ✦
             </div>
-            <div class="response-buttons">
-                <button class="response-btn btn-agree" onclick="repondreQuestion(1, true)">
-                    <i class="fas fa-heart"></i> Oui, c'est essentiel
-                </button>
-                <button class="response-btn btn-reserved" onclick="repondreQuestion(1, false)">
-                    <i class="fas fa-comment"></i> Ça peut prendre du temps
-                </button>
-            </div>
-        </div>
-
-        <!-- Question 2 -->
-        <div class="question-card" id="question2" style="display: none; animation-delay: 0.2s;">
-            <div>
-                <span class="question-number">2</span>
-                <span class="question-text">
-                    Crois-tu que la patience et la douceur sont importantes pour construire quelque chose de vrai avec quelqu'un ?
-                </span>
-            </div>
-            <div class="response-buttons">
-                <button class="response-btn btn-agree" onclick="repondreQuestion(2, true)">
-                    <i class="fas fa-dove"></i> Absolument
-                </button>
-                <button class="response-btn btn-reserved" onclick="repondreQuestion(2, false)">
-                    <i class="fas fa-hourglass-half"></i> Ça dépend des personnes
-                </button>
-            </div>
-        </div>
-
-        <!-- Question 3 -->
-        <div class="question-card" id="question3" style="display: none; animation-delay: 0.2s;">
-            <div>
-                <span class="question-number">3</span>
-                <span class="question-text">
-                    Est-ce que l'idée de découvrir quelqu'un progressivement, avec respect et authenticité, te parle ?
-                </span>
-            </div>
-            <div class="response-buttons">
-                <button class="response-btn btn-agree" onclick="repondreQuestion(3, true)">
-                    <i class="fas fa-star"></i> Beaucoup
-                </button>
-                <button class="response-btn btn-reserved" onclick="repondreQuestion(3, false)">
-                    <i class="fas fa-question"></i> Je ne sais pas encore
-                </button>
-            </div>
-        </div>
-
-        <!-- Message final -->
-        <div class="final-message" id="finalMessage">
-            <div class="final-heart">💖</div>
-            <h2 style="color: #ff6b8b; margin-bottom: 15px; font-size: 1.4em;">
-                Merci pour tes réponses...
-            </h2>
             
-            <div class="humble-message">
-                <p style="color: #666; margin-bottom: 10px;">
-                    Ces moments de partage me font réaliser à quel point j'aimerais te connaître mieux.
-                </p>
-                <p style="color: #ff6b8b; font-weight: 500;">
-                    Je ne suis peut-être pas parfait, mais je veux une histoire vraie et sincère avec toi.
-                </p>
-            </div>
-
-            <p style="color: #666; margin: 25px 0; font-size: 1.1em;">
-                Veux-tu qu'on prenne le temps de se découvrir vraiment ?
-            </p>
-
-            <div class="response-buttons">
-                <button class="response-btn btn-agree" onclick="accepterProposition()" 
-                        style="background: linear-gradient(135deg, #d87093, #ff6b8b);">
-                    <i class="fas fa-check-circle"></i> Oui, avec plaisir
-                </button>
-                <button class="response-btn btn-reserved" onclick="refuserProposition()">
-                    <i class="fas fa-times-circle"></i> Je préfère attendre
-                </button>
+            <div class="name">Stella</div>
+            <div class="sub">Marie</div>
+            
+            <!-- MESSAGE INTIME - PAS DE QUESTION, JUSTE DE LA DOUCEUR -->
+            <div class="message-bubble">
+                <span style="font-size: 1.8rem; display: block; margin-bottom: 8px;">✨</span>
+                Je ne sais pas où nous mènera cette histoire,<br>
+                mais je sais qu'avec toi, chaque message,<br>
+                chaque regard, chaque silence<br>
+                a quelque chose de précieux.
+                <div style="margin-top: 18px; font-size: 1.2rem;">
+                    Tu n'es pas encore à moi,<br>
+                    et c'est pour ça que je chéris tout.
+                </div>
+                <div class="signature">
+                    — K
+                </div>
             </div>
         </div>
 
-        <!-- Progression -->
-        <div class="progress">
-            <div id="progressText">Question 1/3</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+        <!-- DEUXIÈME CARD : GIFS + COEURS -->
+        <div class="card" style="padding-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+                <span style="background: #9a7c5f; width: 8px; height: 8px; border-radius: 50%;"></span>
+                <span style="color: #dbbd9c; letter-spacing: 2px; font-size: 0.9rem;">DOUCEURS</span>
             </div>
+            
+            <!-- GIFS - MIGNONS, CHARGEMENT RAPIDE, 100% MOBILE -->
+            <div class="gif-grid">
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif" alt="chat amour" loading="lazy" onerror="this.src='https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif'">
+                </div>
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif" alt="ours amour" loading="lazy">
+                </div>
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif" alt="coeurs" loading="lazy">
+                </div>
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/UZ5BBe0Z3n4AAAAi/sheep-love.gif" alt="mouton" loading="lazy">
+                </div>
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/OF_2J-pD2ZkAAAAi/couple-couple-goals.gif" alt="couple" loading="lazy">
+                </div>
+                <div class="gif-tile">
+                    <img src="https://media.tenor.com/r0L-kgflj3EAAAAi/love-hearts.gif" alt="love" loading="lazy">
+                </div>
+            </div>
+            
+            <!-- COEUR BATTANT 3D -->
+            <div style="display: flex; justify-content: center; margin: 20px 0 0px;">
+                <span class="heart-3d">❤️</span>
+            </div>
+            <p style="color: #dbb58b; text-align: center; margin: 12px 0 4px; font-size: 1.1rem;">
+                chaque jour est une découverte
+            </p>
+        </div>
+
+        <!-- TROISIÈME CARD : GESTE POÉTIQUE -->
+        <div class="card" style="background: rgba(22, 16, 14, 0.85);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="color: #d4b094; font-weight: 500; letter-spacing: 3px;">UN GESTE POUR TOI</span>
+                <span style="font-size: 1.5rem;">✨</span>
+            </div>
+            
+            <p style="margin-bottom: 24px; color: #ebd9cb; line-height: 1.6;">
+                Pas de question, pas d'attente.<br>
+                Juste ce petit rien qui vient du cœur.
+            </p>
+            
+            <!-- BOUTON ÉTOILE INTERACTIF (LÉGER) -->
+            <button class="star-button" id="starGift">
+                <span>✦</span> étoile pour Stella <span>✦</span>
+            </button>
+            
+            <!-- MESSAGE DE RETOUR (INVISIBLE PUIS APPARAÎT) -->
+            <div id="giftResponse" style="text-align: center; margin-top: 16px; min-height: 28px; color: #eaceba; font-size: 0.95rem; opacity: 0.9;"></div>
+        </div>
+
+        <!-- FOOTER DISCRET -->
+        <div class="footer-note">
+            ✦ rien que pour toi ✦
         </div>
     </div>
 
     <script>
-        let currentQuestion = 1;
-        let positiveAnswers = 0;
-        const totalQuestions = 3;
-        const secretCode = "STELLA MARIE ❤️ SERAPHIN.K";
+        (function(){
+            "use strict";
 
-        // Initialiser les cœurs flottants
-        function initFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            for (let i = 0; i < 5; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '💖';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
-                heart.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(heart);
+            // ----------------------------------------------------
+            // 1. CANVAS PARTICULES HYPER LÉGER (COMPATIBLE TOUS)
+            // ----------------------------------------------------
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function initCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                
+                // Création de 22 petites étoiles
+                particles = [];
+                for (let i = 0; i < 22; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 2.2 + 0.8,
+                        speed: Math.random() * 0.15 + 0.04,
+                        opacity: Math.random() * 0.4 + 0.3,
+                        angle: Math.random() * Math.PI * 2
+                    });
+                }
             }
-        }
 
-        // Afficher notification
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => notification.classList.add('show'), 10);
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }
+            function drawParticles() {
+                if (!ctx) return;
+                ctx.clearRect(0, 0, width, height);
+                
+                // Couleur dorée douce
+                ctx.fillStyle = 'rgba(240, 200, 150, 0.9)';
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = 'rgba(210, 160, 100, 0.5)';
+                
+                for (let p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 225, 190, ${p.opacity})`;
+                    ctx.fill();
+                    
+                    // Mouvement très doux
+                    p.x += Math.sin(p.angle) * 0.08;
+                    p.y += Math.cos(p.angle) * 0.06;
+                    
+                    // Rebond / réinitialisation
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+                    
+                    // Variation légère d'angle
+                    p.angle += 0.001;
+                }
+                
+                requestAnimationFrame(drawParticles);
+            }
 
-        // Répondre à une question
-        function repondreQuestion(questionNum, isPositive) {
-            const currentCard = document.getElementById(`question${questionNum}`);
+            // ----------------------------------------------------
+            // 2. ÉTOILES SCINTILLANTES (FOND)
+            // ----------------------------------------------------
+            function initTwinklingStars() {
+                const container = document.getElementById('twinkleContainer');
+                for (let i = 0; i < 35; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'twinkle-star';
+                    star.innerHTML = '✦';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.animationDelay = (Math.random() * 5) + 's';
+                    star.style.animationDuration = (Math.floor(Math.random() * 5) + 4) + 's';
+                    star.style.fontSize = (Math.floor(Math.random() * 12) + 12) + 'px';
+                    star.style.opacity = Math.random() * 0.5 + 0.2;
+                    container.appendChild(star);
+                }
+            }
+
+            // ----------------------------------------------------
+            // 3. GESTE ÉTOILE - RÉACTION COOL (SANS ALERTE)
+            // ----------------------------------------------------
+            const starBtn = document.getElementById('starGift');
+            const responseDiv = document.getElementById('giftResponse');
             
-            // Effet tactile
-            currentCard.style.transform = 'scale(0.98)';
-            
-            setTimeout(() => {
-                currentCard.style.transform = '';
-            }, 200);
-            
-            if (isPositive) positiveAnswers++;
-            
-            currentQuestion++;
-            updateProgress();
-            
-            setTimeout(() => {
-                if (currentQuestion <= totalQuestions) {
-                    currentCard.style.opacity = '0';
-                    currentCard.style.transform = 'translateY(-10px)';
+            if (starBtn) {
+                starBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Message qui change
+                    responseDiv.innerHTML = '';
+                    
+                    // Étoile filante visuelle
+                    createShootingStar();
+                    
+                    // Texte de réponse poétique
+                    const messages = [
+                        '✨ une étoile vient de naître pour toi ✨',
+                        '💫 elle brille quelque part dans le ciel',
+                        '⭐ comme mon regard quand je pense à toi',
+                        '🌟 c\'est la tienne, rien que pour toi'
+                    ];
+                    
+                    let i = 0;
+                    responseDiv.style.opacity = '0';
+                    responseDiv.style.transition = 'opacity 0.3s';
                     
                     setTimeout(() => {
-                        currentCard.style.display = 'none';
-                        
-                        const nextCard = document.getElementById(`question${currentQuestion}`);
-                        if (nextCard) {
-                            nextCard.style.display = 'block';
-                            nextCard.style.opacity = '0';
-                            nextCard.style.transform = 'translateY(10px)';
-                            
-                            setTimeout(() => {
-                                nextCard.style.opacity = '1';
-                                nextCard.style.transform = 'translateY(0)';
-                            }, 50);
-                        }
-                    }, 300);
-                } else {
-                    showFinalProposition();
-                }
-            }, 500);
-        }
-
-        // Mettre à jour la progression
-        function updateProgress() {
-            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = 
-                currentQuestion <= totalQuestions ? 
-                `Question ${currentQuestion}/${totalQuestions}` : 
-                'Terminé';
-        }
-
-        // Montrer la proposition finale
-        function showFinalProposition() {
-            // Cacher les questions
-            for (let i = 1; i <= totalQuestions; i++) {
-                const card = document.getElementById(`question${i}`);
-                card.style.display = 'none';
+                        responseDiv.innerHTML = messages[0];
+                        responseDiv.style.opacity = '1';
+                    }, 50);
+                    
+                    // Changement de texte après quelques secondes
+                    setTimeout(() => {
+                        responseDiv.style.opacity = '0';
+                        setTimeout(() => {
+                            responseDiv.innerHTML = messages[1];
+                            responseDiv.style.opacity = '1';
+                        }, 200);
+                    }, 2000);
+                    
+                    setTimeout(() => {
+                        responseDiv.style.opacity = '0';
+                        setTimeout(() => {
+                            responseDiv.innerHTML = '💖 merci d\'être toi';
+                            responseDiv.style.opacity = '1';
+                        }, 200);
+                    }, 4000);
+                    
+                    // Animation bouton
+                    starBtn.style.background = 'linear-gradient(145deg, #4d3730, #2f231f)';
+                    starBtn.style.borderTopColor = 'rgba(255,220,170,0.6)';
+                    
+                    setTimeout(() => {
+                        starBtn.style.background = 'linear-gradient(145deg, #2f231f, #1f1714)';
+                        starBtn.style.borderTopColor = 'rgba(255,200,150,0.3)';
+                    }, 200);
+                });
             }
-            
-            // Afficher le message final
-            setTimeout(() => {
-                const finalMessage = document.getElementById('finalMessage');
-                finalMessage.style.display = 'block';
-                
-                if (positiveAnswers >= 2) {
-                    createHearts();
-                }
-            }, 400);
-        }
 
-        // Accepter la proposition
-        function accepterProposition() {
-            const finalMessage = document.getElementById('finalMessage');
-            finalMessage.innerHTML = `
-                <div style="text-align: center;">
-                    <div style="font-size: 70px; color: #ff6b8b; margin-bottom: 20px; animation: pulse 2s infinite;">
-                        💕
-                    </div>
-                    
-                    <h2 style="color: #ff6b8b; margin-bottom: 15px; font-size: 1.5em;">
-                        Merci Stella !
-                    </h2>
-                    
-                    <div class="humble-message">
-                        <p style="color: #666; margin-bottom: 10px;">
-                            Notre histoire commence aujourd'hui.
-                        </p>
-                        <p style="color: #ff6b8b; font-weight: 500;">
-                            Je ne suis peut-être pas parfait, mais je veux une histoire vraie et sincère avec toi.
-                        </p>
-                        <p style="color: #999; margin-top: 10px; font-size: 0.9em;">
-                            Et quand je dis "toi", c'est toi seule.
-                        </p>
-                    </div>
-                    
-                    <div class="whatsapp-secret">
-                        <h3 style="margin-bottom: 15px; color: white; font-weight: 500;">
-                            <i class="fab fa-whatsapp"></i> Notre mot secret
-                        </h3>
-                        <p style="margin-bottom: 10px;">
-                            Copie ce mot et envoie-le moi sur WhatsApp :
-                        </p>
-                        
-                        <div class="secret-code" onclick="copySecretCode()">
-                            ${secretCode}
-                        </div>
-                        
-                        <p style="margin: 10px 0; font-size: 0.9em; opacity: 0.9;">
-                            Clique sur le code pour le copier
-                        </p>
-                        
-                        <button class="copy-btn" onclick="copySecretCode()">
-                            <i class="fas fa-copy"></i> Copier pour WhatsApp
-                        </button>
-                        
-                        <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
-                            J'attends ton message ! 💚
-                        </p>
-                    </div>
-                    
-                    <p style="color: #999; margin-top: 20px; font-size: 0.9em;">
-                        Je t'aime vraiment.
-                    </p>
-                </div>
-            `;
-            
-            createHearts();
-        }
-
-        // Refuser la proposition
-        function refuserProposition() {
-            const finalMessage = document.getElementById('finalMessage');
-            finalMessage.innerHTML = `
-                <div style="text-align: center;">
-                    <div style="font-size: 60px; color: #aaa; margin: 20px 0;">
-                        💫
-                    </div>
-                    
-                    <h2 style="color: #888; margin-bottom: 15px; font-size: 1.4em;">
-                        Je comprends...
-                    </h2>
-                    
-                    <div class="humble-message">
-                        <p style="color: #666; margin-bottom: 10px;">
-                            Je respecte ton choix et ton rythme.
-                        </p>
-                        <p style="color: #999;">
-                            Merci d'avoir pris le temps de répondre.
-                        </p>
-                    </div>
-                    
-                    <p style="color: #aaa; margin-top: 20px; font-size: 0.9em;">
-                        Prends soin de toi, Stella.
-                    </p>
-                </div>
-            `;
-        }
-
-        // Copier le code secret
-        function copySecretCode() {
-            navigator.clipboard.writeText(secretCode).then(() => {
-                showNotification('✅ Mot copié ! Envoie-le moi sur WhatsApp');
+            // Étoile filante (élégante)
+            function createShootingStar() {
+                const star = document.createElement('div');
+                star.style.position = 'fixed';
+                star.style.left = '-10%';
+                star.style.top = Math.random() * 70 + 15 + '%';
+                star.style.fontSize = '28px';
+                star.style.zIndex = '9999';
+                star.style.pointerEvents = 'none';
+                star.style.color = '#ffe7d4';
+                star.style.textShadow = '0 0 25px #ffbb99, 0 0 60px #ffaa77';
+                star.style.animation = 'shoot 0.9s forwards cubic-bezier(0.1, 0.7, 0.3, 1)';
+                star.innerHTML = '✨';
                 
-                // Effet sur le bouton
-                const copyBtn = document.querySelector('.copy-btn');
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copié !';
-                copyBtn.style.background = '#4CAF50';
-                copyBtn.style.color = 'white';
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes shoot {
+                        0% { left: -10%; transform: rotate(10deg) scale(0.7); opacity: 0; }
+                        10% { opacity: 1; }
+                        100% { left: 120%; transform: rotate(25deg) scale(1.2); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
                 
-                // Effet sur le code
-                const codeElement = document.querySelector('.secret-code');
-                codeElement.style.background = 'rgba(76, 175, 80, 0.3)';
+                document.body.appendChild(star);
                 
-                // Réinitialiser après 3 secondes
                 setTimeout(() => {
-                    copyBtn.innerHTML = originalText;
-                    copyBtn.style.background = 'white';
-                    copyBtn.style.color = '#25D366';
-                    codeElement.style.background = 'rgba(255, 255, 255, 0.2)';
-                }, 3000);
+                    star.remove();
+                    style.remove();
+                }, 1000);
+            }
+
+            // ----------------------------------------------------
+            // 4. PRÉCHARGEMENT GIF (PAS DE FLASH)
+            // ----------------------------------------------------
+            function preloadImages() {
+                const gifSources = [
+                    'https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif',
+                    'https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif',
+                    'https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif',
+                    'https://media.tenor.com/UZ5BBe0Z3n4AAAAi/sheep-love.gif',
+                    'https://media.tenor.com/OF_2J-pD2ZkAAAAi/couple-couple-goals.gif',
+                    'https://media.tenor.com/r0L-kgflj3EAAAAi/love-hearts.gif'
+                ];
                 
-            }).catch(err => {
-                showNotification('⚠️ Copie manuellement : ' + secretCode);
+                gifSources.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            }
+
+            // ----------------------------------------------------
+            // 5. INITIALISATION
+            // ----------------------------------------------------
+            window.addEventListener('DOMContentLoaded', function() {
+                initCanvas();
+                initTwinklingStars();
+                preloadImages();
+                
+                // Resize
+                window.addEventListener('resize', function() {
+                    initCanvas();
+                });
+                
+                // Démarrer animation canvas
+                requestAnimationFrame(drawParticles);
+                
+                // Optimisation Android tactile
+                document.addEventListener('touchstart', function(){}, { passive: true });
             });
-        }
 
-        // Créer des cœurs
-        function createHearts() {
-            const container = document.getElementById('floatingHearts');
-            for (let i = 0; i < 8; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.innerHTML = '💖';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    heart.style.animationDelay = '0s';
-                    heart.style.animationDuration = '3s';
-                    container.appendChild(heart);
-                    
-                    setTimeout(() => heart.remove(), 3000);
-                }, i * 200);
-            }
-        }
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            initFloatingHearts();
-            updateProgress();
-            
-            // Prévenir le zoom automatique iOS
-            document.addEventListener('touchmove', function(e) {
-                if(e.scale !== 1) e.preventDefault();
-            }, { passive: false });
-        });
-
-        // Support tactile amélioré
-        document.addEventListener('touchstart', function() {}, {passive: true});
+        })();
     </script>
+
+    <!-- FALLBACK SI TOUT PLANTE (PRESQUE IMPOSSIBLE) -->
+    <noscript>
+        <div style="position: fixed; z-index: 100; color: white; background: black; padding: 20px;">
+            Stella, tu es précieuse. ✨
+        </div>
+    </noscript>
 </body>
 </html>
