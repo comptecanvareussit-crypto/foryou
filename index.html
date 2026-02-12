@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Stella ✦</title>
+    <title>Stella · SERAPHIN.K</title>
     <style>
-        /* ===== RESET MODERNE ===== */
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -13,20 +13,21 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background: #0a0806;
-            min-height: 100vh;
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            background: #fbe4e1; /* Rose poudré profond */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: system-ui, -apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, sans-serif;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;
+            padding: 12px;
         }
 
-        /* ===== CANVAS DYNAMIQUE (ULTRA LÉGER) ===== */
-        #particles-canvas {
+        /* ===== CANVAS CŒURS ===== */
+        #heartsCanvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -34,574 +35,493 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
+            opacity: 0.35;
         }
 
-        /* ===== CARTE PRINCIPALE ===== */
-        .stack {
+        /* ===== ÉTOILES DORÉES ===== */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: rgba(194, 113, 122, 0.25); /* Rose boisé léger */
+            font-size: 14px;
+            animation: twinkle 6s infinite alternate;
+            text-shadow: 0 0 15px #c2717a;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.7); }
+            100% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* ===== CARTE PRINCIPALE - BLANC CASSÉ VELOUTÉ ===== */
+        .letter {
             position: relative;
-            z-index: 20;
+            z-index: 30;
             width: 100%;
             max-width: 480px;
-            margin: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* Style carte premium */
-        .card {
-            background: rgba(18, 14, 12, 0.75);
+            background: #fff9f5; /* Blanc cassé velouté */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
+            border-radius: 48px 48px 48px 16px;
             padding: 28px 24px;
-            border: 1px solid rgba(255, 215, 170, 0.18);
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.7);
-            transition: transform 0.2s ease, border-color 0.2s;
-            color: #faf1e6;
+            border: 1px solid #fccaca; /* Rose pâle */
+            box-shadow: 
+                0 25px 50px -15px rgba(194, 113, 122, 0.15),
+                0 0 0 1px rgba(252, 202, 202, 0.3) inset,
+                0 0 40px rgba(230, 160, 160, 0.1);
+            color: #7a5a5a; /* Brun rosé foncé */
+            display: flex;
+            flex-direction: column;
+            max-height: 88vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        .card:active {
-            transform: scale(0.99);
-            border-color: rgba(230, 180, 140, 0.4);
+        .letter::-webkit-scrollbar {
+            display: none;
         }
 
-        /* ===== BADGE INITIALES ===== */
-        .badge {
-            background: rgba(200, 150, 110, 0.15);
-            border: 1px solid rgba(210, 160, 120, 0.4);
-            border-radius: 100px;
-            padding: 8px 20px;
+        /* ===== CACHET ROSE CORAIL DOUX ===== */
+        .seal {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            background: #e6a0a0; /* Rose corail doux */
+            border-radius: 60px;
+            padding: 6px 22px;
             width: fit-content;
             margin-bottom: 16px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 3px;
-            color: #eaceba;
-            backdrop-filter: blur(5px);
-        }
-
-        /* ===== TYPOGRAPHIE ===== */
-        .name {
-            font-size: 2.4rem;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 4px;
             color: white;
-            text-shadow: 0 2px 10px rgba(230, 150, 100, 0.3);
-            letter-spacing: -0.5px;
-        }
-
-        .sub {
-            font-size: 0.95rem;
-            color: #d4bcab;
-            margin-bottom: 24px;
-            letter-spacing: 2px;
-            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            opacity: 0.9;
+            box-shadow: 0 5px 0 #c2717a, 0 12px 25px rgba(194, 113, 122, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            font-weight: 600;
         }
 
-        /* ===== MESSAGE DYNAMIQUE (TYPE INSTANT) ===== */
-        .message-bubble {
-            background: rgba(30, 22, 20, 0.7);
-            border-left: 4px solid #c49a6c;
-            border-radius: 20px 20px 20px 4px;
-            padding: 24px;
-            margin: 12px 0 8px;
-            line-height: 1.6;
+        /* ===== PRÉNOMS ===== */
+        .name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #b35e68; /* Rose boisé soutenu */
+            text-shadow: 
+                0 0 15px rgba(194, 113, 122, 0.2),
+                0 2px 10px rgba(255, 200, 200, 0.1);
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
+        }
+
+        .surname {
+            font-size: 0.85rem;
+            color: #c2717a; /* Rose boisé */
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border-bottom: 1.5px solid #fccaca;
+            border-top: 1.5px solid #fccaca;
+            padding: 8px 0;
+            display: inline-block;
+            font-weight: 400;
+        }
+
+        /* ===== MESSAGE - HÉRARCHIE VISUELLE ===== */
+        .message {
+            background: rgba(255, 249, 245, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 24px 22px;
+            margin: 8px 0 16px;
+            line-height: 1.75;
+            font-size: 0.98rem;
+            color: #7a5a5a;
+            box-shadow: 0 8px 25px rgba(194, 113, 122, 0.08);
+            border: 1px solid #fccaca;
+        }
+
+        /* PARTIES IMPORTANTES - ROSE TRÈS PÂLE */
+        .highlight-pink {
+            background: #ffe4e4; /* Rose très pâle */
+            padding: 3px 12px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
+            color: #b35e68;
+            border: 1px solid #c2717a;
+            margin: 2px 0;
+        }
+
+        .heart-divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0 12px;
+            color: #c2717a;
+            font-size: 0.9rem;
+        }
+
+        .heart-divider span {
+            font-size: 1.2rem;
+        }
+
+        .strong-message {
             font-size: 1.1rem;
-            color: #f0ded2;
-            backdrop-filter: blur(10px);
+            font-weight: 700;
+            color: #b35e68;
+            background: #ffefef; /* Rose très doux */
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 5px 0;
+            border: 1px dashed #c2717a;
         }
 
         .signature {
             text-align: right;
             margin-top: 20px;
+            color: #b35e68;
             font-size: 1.2rem;
-            color: #dbb48b;
-            font-weight: 500;
-            letter-spacing: 1px;
-            border-top: 1px dashed rgba(200, 160, 120, 0.4);
-            padding-top: 18px;
+            letter-spacing: 3px;
+            border-top: 1px dashed #fccaca;
+            padding-top: 16px;
+            font-weight: 600;
         }
 
-        /* ===== GRILLE GIFS - STYLE TIKTOK/PREMIUM ===== */
+        /* ===== GRILLE GIFS ===== */
         .gif-grid {
             display: flex;
-            flex-wrap: wrap;
             gap: 12px;
-            margin: 20px 0 8px;
+            margin: 12px 0 12px;
             justify-content: center;
         }
 
-        .gif-tile {
-            flex: 1 1 calc(33.333% - 8px);
-            min-width: 100px;
-            background: #16100e;
-            border-radius: 18px;
-            padding: 8px;
-            border: 1px solid rgba(220, 170, 130, 0.2);
-            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+        .gif-item {
+            flex: 0 1 0;
+            min-width: 85px;
+            max-width: 100px;
+            background: white;
+            border-radius: 24px;
+            padding: 6px;
+            border: 2px solid #fccaca;
+            box-shadow: 0 8px 20px rgba(194, 113, 122, 0.1);
+            transition: 0.2s;
+            animation: levitate 5s infinite alternate;
         }
 
-        .gif-tile:hover, .gif-tile:active {
-            border-color: #d09a70;
-            background: #1f1512;
-            transform: translateY(-3px);
+        .gif-item:nth-child(2) { animation-delay: 0.5s; }
+        .gif-item:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes levitate {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); border-color: #c2717a; }
         }
 
-        .gif-tile img {
+        .gif-item img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
+            border-radius: 18px;
             display: block;
-            background: #231b18;
         }
 
-        /* ===== COEUR BATTANT 3D ===== */
-        .heart-3d {
-            font-size: 3.2rem;
-            line-height: 1;
-            margin: 12px 0 4px;
-            animation: heartbeat 1.8s infinite cubic-bezier(0.45, 0, 0.55, 1);
-            display: inline-block;
-            filter: drop-shadow(0 0 12px rgba(255, 120, 100, 0.6));
-            transform-origin: center;
+        /* ===== ZONE CŒURS ===== */
+        .heart-zone {
+            text-align: center;
+            margin-top: 12px;
+            padding: 16px 18px;
+            background: #fff5f2;
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 2px solid #fccaca;
+            color: #7a5a5a;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            color: rgba(194, 113, 122, 0.3);
+            font-size: 0.55rem;
+            text-align: center;
+            margin-top: 14px;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            border-top: 1px solid #fccaca;
+            padding-top: 12px;
+        }
+
+        /* ===== CŒUR BATTANT ===== */
+        .big-heart {
+            font-size: 2rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #c2717a;
+            animation: heartbeat 1.8s infinite;
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            14% { transform: scale(1.2); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.1); }
-            70% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.08); }
         }
 
-        /* ===== BOUTON ÉTOILE - EFFET LUXE ===== */
-        .star-button {
-            background: linear-gradient(145deg, #2f231f, #1f1714);
-            border: 1px solid rgba(230, 180, 130, 0.3);
-            border-radius: 60px;
-            padding: 16px 28px;
-            width: 100%;
-            color: #fae1cf;
-            font-size: 1.15rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin: 28px 0 8px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 0 #0a0706, 0 12px 30px rgba(0,0,0,0.5);
-            transition: all 0.08s linear;
-            letter-spacing: 2px;
-            border: none;
-            border-top: 1px solid rgba(255,200,150,0.3);
+        /* ===== RESPONSIVE OPTIMISÉ ===== */
+        @media (max-height: 700px) {
+            .letter { padding: 20px 22px; }
+            .message { padding: 18px; margin: 6px 0; }
+            .gif-item { min-width: 75px; }
         }
 
-        .star-button:active {
-            transform: translateY(6px);
-            box-shadow: 0 2px 0 #0a0706, 0 12px 30px rgba(0,0,0,0.5);
-        }
-
-        /* ===== ÉTOILES SCINTILLANTES ===== */
-        .twinkle {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .twinkle-star {
-            position: absolute;
-            color: rgba(255, 235, 200, 0.7);
-            font-size: 14px;
-            animation: floatStar 4s infinite alternate ease-in-out;
-        }
-
-        @keyframes floatStar {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* ===== FOOTER DISCRET ===== */
-        .footer-note {
-            font-size: 0.75rem;
-            color: rgba(180, 150, 130, 0.5);
-            text-align: center;
-            margin-top: 12px;
-            letter-spacing: 1px;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
-        /* ===== ADAPTATION TOUS TÉLÉPHONES ===== */
         @media (max-width: 380px) {
-            .name { font-size: 2rem; }
-            .gif-tile { min-width: calc(50% - 6px); }
-            .card { padding: 22px 18px; }
-            .message-bubble { font-size: 1rem; padding: 20px; }
+            .letter { padding: 20px 18px; }
+            .name { font-size: 2.2rem; }
+            .message { font-size: 0.92rem; padding: 16px; }
+            .surname { letter-spacing: 8px; }
+            .gif-item { min-width: 70px; }
         }
 
-        @media (min-width: 600px) {
-            .stack { max-width: 520px; }
-        }
-
-        /* ===== OPTIMISATION NOTCH ===== */
-        @supports (padding: max(0px)) {
-            body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
-        }
-        
-        /* ===== DARK MODE NATIF ===== */
-        @media (prefers-color-scheme: dark) {
-            body { background: #080605; }
-        }
-
-        /* ===== LOADER INSTANTANÉ ===== */
-        .instant-appear {
-            animation: fadeSlide 0.5s ease-out;
-        }
-
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 320px) {
+            .gif-grid { gap: 6px; }
+            .gif-item { min-width: 65px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CANVAS PARTICULES LÉGER (ADAPTÉ TOUS TÉLÉPHONES) -->
-    <canvas id="particles-canvas"></canvas>
-    
-    <!-- ÉTOILES DISCRÈTES -->
-    <div class="twinkle" id="twinkleContainer"></div>
+    <!-- CANVAS CŒURS -->
+    <canvas id="heartsCanvas"></canvas>
 
-    <!-- CONTENU PRINCIPAL - STYLE STACK MODERNE -->
-    <div class="stack instant-appear">
+    <!-- ÉTOILES -->
+    <div class="stars" id="stars"></div>
 
-        <!-- PREMIÈRE CARD : IDENTITÉ + MESSAGE -->
-        <div class="card">
-            <div class="badge">
-                ✦ S.M ✦
-            </div>
+    <!-- ===== CARTE PRINCIPALE ===== -->
+    <div class="letter">
+
+        <!-- CACHET ROSE CORAIL -->
+        <div class="seal">
+            ✦ POUR TOI ✦
+        </div>
+
+        <!-- PRÉNOMS -->
+        <div class="name">Stella</div>
+        <div class="surname">MARIE</div>
+
+        <!-- ===== MESSAGE AVEC HÉRARCHIE ===== -->
+        <div class="message">
+            <span class="big-heart">🤍</span>
             
-            <div class="name">Stella</div>
-            <div class="sub">Marie</div>
+            Je suis pas venu te vendre un rêve parfait.<br>
+            Je suis pas venu te demander d'être à moi.<br><br>
             
-            <!-- MESSAGE INTIME - PAS DE QUESTION, JUSTE DE LA DOUCEUR -->
-            <div class="message-bubble">
-                <span style="font-size: 1.8rem; display: block; margin-bottom: 8px;">✨</span>
-                Je ne sais pas où nous mènera cette histoire,<br>
-                mais je sais qu'avec toi, chaque message,<br>
-                chaque regard, chaque silence<br>
-                a quelque chose de précieux.
-                <div style="margin-top: 18px; font-size: 1.2rem;">
-                    Tu n'es pas encore à moi,<br>
-                    et c'est pour ça que je chéris tout.
-                </div>
-                <div class="signature">
-                    — K
-                </div>
+            <span class="heart-divider">
+                <span>🌸</span> Je suis juste venu te dire une chose <span>🌸</span>
+            </span>
+            
+            <div style="text-align: center; margin: 12px 0;">
+                <span class="strong-message">je serai là.</span>
+            </div><br>
+            
+            Dans tes jours de soleil.<br>
+            Dans tes jours d'orage.<br>
+            Dans tes rires qui débordent.<br>
+            Dans tes silences qui pèsent.<br><br>
+            
+            <span class="heart-divider">
+                <span>💗</span> Je crois en toi <span>💗</span>
+            </span><br>
+            
+            Pas en une version idéale de toi.<br>
+            <span class="highlight-pink">En TOI.</span> Celle qui doute, qui avance,<br>
+            qui tombe, qui se relève.<br><br>
+            
+            Je crois en ce que tu deviendras.<br>
+            Pas parce que je l'imagine.<br>
+            <span class="highlight-pink">Parce que je vois déjà qui tu es.</span><br><br>
+            
+            <span class="heart-divider">
+                <span>✨</span> Apprendre à te connaître <span>✨</span>
+            </span><br>
+            
+            Vraiment. Pas en surface.<br>
+            Prendre le temps. Découvrir qui tu es,<br>
+            <span class="highlight-pink">sans rien forcer, sans rien précipiter.</span><br><br>
+            
+            Je sais pas où ça nous mènera.<br>
+            Mais je sais que j'ai envie d'être là.<br>
+            Pas par hasard. Pas pour un soir.<br>
+            <span class="highlight-pink">Pas juste pour un 14 février.</span><br><br>
+            
+            <div style="text-align: center; margin: 15px 0 10px;">
+                <span class="strong-message" style="background: #ffe4e4;">
+                    Pour les jours qui comptent.
+                </span><br>
+                <span class="strong-message" style="background: #ffefef; margin-top: 8px;">
+                    Pour ceux qui compteront.
+                </span>
+            </div><br>
+            
+            Voilà. C'est tout.<br>
+            Je voulais juste que tu saches.<br>
+            
+            <div class="signature">
+                — SERAPHIN.K
             </div>
         </div>
 
-        <!-- DEUXIÈME CARD : GIFS + COEURS -->
-        <div class="card" style="padding-bottom: 20px;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 18px;">
-                <span style="background: #9a7c5f; width: 8px; height: 8px; border-radius: 50%;"></span>
-                <span style="color: #dbbd9c; letter-spacing: 2px; font-size: 0.9rem;">DOUCEURS</span>
+        <!-- GIFS TENDRES -->
+        <div class="gif-grid">
+            <div class="gif-item">
+                <img src="https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif" alt="chat tendre" loading="lazy">
             </div>
-            
-            <!-- GIFS - MIGNONS, CHARGEMENT RAPIDE, 100% MOBILE -->
-            <div class="gif-grid">
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif" alt="chat amour" loading="lazy" onerror="this.src='https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif'">
-                </div>
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif" alt="ours amour" loading="lazy">
-                </div>
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif" alt="coeurs" loading="lazy">
-                </div>
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/UZ5BBe0Z3n4AAAAi/sheep-love.gif" alt="mouton" loading="lazy">
-                </div>
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/OF_2J-pD2ZkAAAAi/couple-couple-goals.gif" alt="couple" loading="lazy">
-                </div>
-                <div class="gif-tile">
-                    <img src="https://media.tenor.com/r0L-kgflj3EAAAAi/love-hearts.gif" alt="love" loading="lazy">
-                </div>
+            <div class="gif-item">
+                <img src="https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif" alt="coeurs" loading="lazy">
             </div>
-            
-            <!-- COEUR BATTANT 3D -->
-            <div style="display: flex; justify-content: center; margin: 20px 0 0px;">
-                <span class="heart-3d">❤️</span>
+            <div class="gif-item">
+                <img src="https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif" alt="ours tendre" loading="lazy">
             </div>
-            <p style="color: #dbb58b; text-align: center; margin: 12px 0 4px; font-size: 1.1rem;">
-                chaque jour est une découverte
-            </p>
         </div>
 
-        <!-- TROISIÈME CARD : GESTE POÉTIQUE -->
-        <div class="card" style="background: rgba(22, 16, 14, 0.85);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span style="color: #d4b094; font-weight: 500; letter-spacing: 3px;">UN GESTE POUR TOI</span>
-                <span style="font-size: 1.5rem;">✨</span>
-            </div>
-            
-            <p style="margin-bottom: 24px; color: #ebd9cb; line-height: 1.6;">
-                Pas de question, pas d'attente.<br>
-                Juste ce petit rien qui vient du cœur.
-            </p>
-            
-            <!-- BOUTON ÉTOILE INTERACTIF (LÉGER) -->
-            <button class="star-button" id="starGift">
-                <span>✦</span> étoile pour Stella <span>✦</span>
-            </button>
-            
-            <!-- MESSAGE DE RETOUR (INVISIBLE PUIS APPARAÎT) -->
-            <div id="giftResponse" style="text-align: center; margin-top: 16px; min-height: 28px; color: #eaceba; font-size: 0.95rem; opacity: 0.9;"></div>
+        <!-- ZONE CŒURS -->
+        <div class="heart-zone" id="heartZone">
+            <span style="font-size: 1.8rem; margin-bottom: 4px; color: #c2717a;">❤️🤍❤️</span>
+            <span style="font-weight: 500; color: #7a5a5a;">des cœurs pour toi, Stella</span>
+            <span style="font-size: 0.75rem; color: #c2717a; margin-top: 4px;">toutes les 8 secondes</span>
         </div>
 
-        <!-- FOOTER DISCRET -->
-        <div class="footer-note">
-            ✦ rien que pour toi ✦
+        <!-- FOOTER -->
+        <div class="footer">
+            ✦ STELLA · SERAPHIN ✦
         </div>
+
     </div>
 
     <script>
-        (function(){
+        (function() {
             "use strict";
 
-            // ----------------------------------------------------
-            // 1. CANVAS PARTICULES HYPER LÉGER (COMPATIBLE TOUS)
-            // ----------------------------------------------------
-            const canvas = document.getElementById('particles-canvas');
+            // ===== 1. CANVAS CŒURS =====
+            const canvas = document.getElementById('heartsCanvas');
             const ctx = canvas.getContext('2d');
-            let width, height;
-            let particles = [];
+            let w, h;
+            let hearts = [];
 
-            function initCanvas() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-                
-                // Création de 22 petites étoiles
-                particles = [];
-                for (let i = 0; i < 22; i++) {
-                    particles.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        radius: Math.random() * 2.2 + 0.8,
-                        speed: Math.random() * 0.15 + 0.04,
-                        opacity: Math.random() * 0.4 + 0.3,
-                        angle: Math.random() * Math.PI * 2
+            function resize() {
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = w;
+                canvas.height = h;
+            }
+
+            // ===== 2. CRÉER CŒURS =====
+            function createHearts() {
+                const count = 100;
+                for (let i = 0; i < count; i++) {
+                    hearts.push({
+                        x: w/2 + (Math.random() - 0.5) * 350,
+                        y: h/2 + (Math.random() - 0.5) * 250,
+                        vx: (Math.random() - 0.5) * 9,
+                        vy: (Math.random() - 0.5) * 9 - 5,
+                        size: Math.random() * 16 + 12,
+                        opacity: 0.8,
+                        symbol: Math.random() > 0.4 ? '❤️' : '🤍'
                     });
                 }
             }
 
-            function drawParticles() {
-                if (!ctx) return;
-                ctx.clearRect(0, 0, width, height);
+            // ===== 3. DESSINER =====
+            function drawHearts() {
+                ctx.clearRect(0, 0, w, h);
                 
-                // Couleur dorée douce
-                ctx.fillStyle = 'rgba(240, 200, 150, 0.9)';
-                ctx.shadowBlur = 6;
-                ctx.shadowColor = 'rgba(210, 160, 100, 0.5)';
-                
-                for (let p of particles) {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 225, 190, ${p.opacity})`;
-                    ctx.fill();
+                for (let i = hearts.length - 1; i >= 0; i--) {
+                    const hrt = hearts[i];
                     
-                    // Mouvement très doux
-                    p.x += Math.sin(p.angle) * 0.08;
-                    p.y += Math.cos(p.angle) * 0.06;
+                    ctx.font = `${hrt.size}px Arial, sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.shadowBlur = 12;
+                    ctx.shadowColor = '#c2717a';
+                    ctx.fillStyle = `rgba(194, 113, 122, ${hrt.opacity * 0.6})`;
+                    ctx.fillText(hrt.symbol, hrt.x, hrt.y);
                     
-                    // Rebond / réinitialisation
-                    if (p.x < 0) p.x = width;
-                    if (p.x > width) p.x = 0;
-                    if (p.y < 0) p.y = height;
-                    if (p.y > height) p.y = 0;
+                    hrt.x += hrt.vx;
+                    hrt.y += hrt.vy;
+                    hrt.vy += 0.18;
+                    hrt.opacity -= 0.004;
                     
-                    // Variation légère d'angle
-                    p.angle += 0.001;
-                }
-                
-                requestAnimationFrame(drawParticles);
-            }
-
-            // ----------------------------------------------------
-            // 2. ÉTOILES SCINTILLANTES (FOND)
-            // ----------------------------------------------------
-            function initTwinklingStars() {
-                const container = document.getElementById('twinkleContainer');
-                for (let i = 0; i < 35; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'twinkle-star';
-                    star.innerHTML = '✦';
-                    star.style.left = Math.random() * 100 + '%';
-                    star.style.top = Math.random() * 100 + '%';
-                    star.style.animationDelay = (Math.random() * 5) + 's';
-                    star.style.animationDuration = (Math.floor(Math.random() * 5) + 4) + 's';
-                    star.style.fontSize = (Math.floor(Math.random() * 12) + 12) + 'px';
-                    star.style.opacity = Math.random() * 0.5 + 0.2;
-                    container.appendChild(star);
-                }
-            }
-
-            // ----------------------------------------------------
-            // 3. GESTE ÉTOILE - RÉACTION COOL (SANS ALERTE)
-            // ----------------------------------------------------
-            const starBtn = document.getElementById('starGift');
-            const responseDiv = document.getElementById('giftResponse');
-            
-            if (starBtn) {
-                starBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Message qui change
-                    responseDiv.innerHTML = '';
-                    
-                    // Étoile filante visuelle
-                    createShootingStar();
-                    
-                    // Texte de réponse poétique
-                    const messages = [
-                        '✨ une étoile vient de naître pour toi ✨',
-                        '💫 elle brille quelque part dans le ciel',
-                        '⭐ comme mon regard quand je pense à toi',
-                        '🌟 c\'est la tienne, rien que pour toi'
-                    ];
-                    
-                    let i = 0;
-                    responseDiv.style.opacity = '0';
-                    responseDiv.style.transition = 'opacity 0.3s';
-                    
-                    setTimeout(() => {
-                        responseDiv.innerHTML = messages[0];
-                        responseDiv.style.opacity = '1';
-                    }, 50);
-                    
-                    // Changement de texte après quelques secondes
-                    setTimeout(() => {
-                        responseDiv.style.opacity = '0';
-                        setTimeout(() => {
-                            responseDiv.innerHTML = messages[1];
-                            responseDiv.style.opacity = '1';
-                        }, 200);
-                    }, 2000);
-                    
-                    setTimeout(() => {
-                        responseDiv.style.opacity = '0';
-                        setTimeout(() => {
-                            responseDiv.innerHTML = '💖 merci d\'être toi';
-                            responseDiv.style.opacity = '1';
-                        }, 200);
-                    }, 4000);
-                    
-                    // Animation bouton
-                    starBtn.style.background = 'linear-gradient(145deg, #4d3730, #2f231f)';
-                    starBtn.style.borderTopColor = 'rgba(255,220,170,0.6)';
-                    
-                    setTimeout(() => {
-                        starBtn.style.background = 'linear-gradient(145deg, #2f231f, #1f1714)';
-                        starBtn.style.borderTopColor = 'rgba(255,200,150,0.3)';
-                    }, 200);
-                });
-            }
-
-            // Étoile filante (élégante)
-            function createShootingStar() {
-                const star = document.createElement('div');
-                star.style.position = 'fixed';
-                star.style.left = '-10%';
-                star.style.top = Math.random() * 70 + 15 + '%';
-                star.style.fontSize = '28px';
-                star.style.zIndex = '9999';
-                star.style.pointerEvents = 'none';
-                star.style.color = '#ffe7d4';
-                star.style.textShadow = '0 0 25px #ffbb99, 0 0 60px #ffaa77';
-                star.style.animation = 'shoot 0.9s forwards cubic-bezier(0.1, 0.7, 0.3, 1)';
-                star.innerHTML = '✨';
-                
-                const style = document.createElement('style');
-                style.innerHTML = `
-                    @keyframes shoot {
-                        0% { left: -10%; transform: rotate(10deg) scale(0.7); opacity: 0; }
-                        10% { opacity: 1; }
-                        100% { left: 120%; transform: rotate(25deg) scale(1.2); opacity: 0; }
+                    if (hrt.opacity <= 0.02 || hrt.y > h + 100) {
+                        hearts.splice(i, 1);
                     }
-                `;
-                document.head.appendChild(style);
+                }
                 
-                document.body.appendChild(star);
-                
-                setTimeout(() => {
-                    star.remove();
-                    style.remove();
-                }, 1000);
+                requestAnimationFrame(drawHearts);
             }
 
-            // ----------------------------------------------------
-            // 4. PRÉCHARGEMENT GIF (PAS DE FLASH)
-            // ----------------------------------------------------
-            function preloadImages() {
-                const gifSources = [
-                    'https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif',
-                    'https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif',
-                    'https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif',
-                    'https://media.tenor.com/UZ5BBe0Z3n4AAAAi/sheep-love.gif',
-                    'https://media.tenor.com/OF_2J-pD2ZkAAAAi/couple-couple-goals.gif',
-                    'https://media.tenor.com/r0L-kgflj3EAAAAi/love-hearts.gif'
-                ];
-                
-                gifSources.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
-                });
+            // ===== 4. ÉTOILES =====
+            function initStars() {
+                const starsDiv = document.getElementById('stars');
+                for (let i = 0; i < 45; i++) {
+                    const s = document.createElement('div');
+                    s.className = 'star';
+                    s.innerHTML = Math.random() > 0.5 ? '✦' : '✨';
+                    s.style.left = Math.random() * 100 + '%';
+                    s.style.top = Math.random() * 100 + '%';
+                    s.style.fontSize = (Math.floor(Math.random() * 16) + 10) + 'px';
+                    s.style.animationDelay = (Math.random() * 7) + 's';
+                    s.style.animationDuration = (Math.floor(Math.random() * 6) + 5) + 's';
+                    starsDiv.appendChild(s);
+                }
             }
 
-            // ----------------------------------------------------
-            // 5. INITIALISATION
-            // ----------------------------------------------------
+            // ===== 5. BOUCLE CŒURS =====
+            function startHearts() {
+                createHearts();
+                setInterval(() => {
+                    createHearts();
+                    const zone = document.getElementById('heartZone');
+                    zone.style.background = '#ffefef';
+                    setTimeout(() => {
+                        zone.style.background = '#fff5f2';
+                    }, 200);
+                }, 8000);
+            }
+
+            // ===== 6. INIT =====
             window.addEventListener('DOMContentLoaded', function() {
-                initCanvas();
-                initTwinklingStars();
-                preloadImages();
+                resize();
+                initStars();
                 
-                // Resize
-                window.addEventListener('resize', function() {
-                    initCanvas();
-                });
+                // Préchargement GIFs
+                ['https://media.tenor.com/QC0n7gBd7ooAAAAi/cat-love.gif',
+                 'https://media.tenor.com/1nLMv4IKU-sAAAAi/love-hearts.gif',
+                 'https://media.tenor.com/_gI8ZEObE24AAAAi/bear-love.gif'
+                ].forEach(src => new Image().src = src);
                 
-                // Démarrer animation canvas
-                requestAnimationFrame(drawParticles);
+                requestAnimationFrame(drawHearts);
+                startHearts();
                 
-                // Optimisation Android tactile
-                document.addEventListener('touchstart', function(){}, { passive: true });
+                window.addEventListener('resize', resize);
+                
+                // Blocage scroll
+                document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
             });
 
         })();
     </script>
-
-    <!-- FALLBACK SI TOUT PLANTE (PRESQUE IMPOSSIBLE) -->
-    <noscript>
-        <div style="position: fixed; z-index: 100; color: white; background: black; padding: 20px;">
-            Stella, tu es précieuse. ✨
-        </div>
-    </noscript>
 </body>
 </html>
