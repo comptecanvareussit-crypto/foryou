@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Stella</title>
+    <title>Stella · SERAPHIN.K</title>
     <style>
-        /* === RESET ULTRA RAPIDE === */
         * {
             margin: 0;
             padding: 0;
@@ -16,25 +15,39 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #fbeeec; /* Rose poudré doux */
+            background: #fbeeec;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 10px;
+            position: relative;
         }
 
-        /* === UNE SEULE CARTE, LÉGÈRE === */
+        /* CANVAS POUR LES CŒURS ET TEXTES */
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* CARTE PRINCIPALE */
         .carte {
+            position: relative;
+            z-index: 10;
             width: 100%;
             max-width: 420px;
-            background: #fffcf9; /* Blanc doux */
+            background: #fffcf9;
             border-radius: 40px 40px 40px 12px;
-            padding: 24px 22px;
+            padding: 28px 24px;
             border: 1px solid #ffe3e0;
             box-shadow: 0 15px 30px rgba(180, 120, 120, 0.08);
             color: #6e5656;
-            max-height: 92vh;
+            max-height: 90vh;
             overflow-y: auto;
             scrollbar-width: none;
         }
@@ -43,7 +56,6 @@
             display: none;
         }
 
-        /* === ÉLÉMENTS SIMPLES === */
         .cachet {
             background: #e6b0b0;
             color: white;
@@ -79,19 +91,18 @@
             margin-bottom: 14px;
         }
 
-        /* === MESSAGE TRÈS SIMPLE, SANS DÉCOR LOURD === */
+        /* MESSAGE */
         .message {
             background: #fffaf8;
             border-radius: 26px;
             padding: 22px 20px;
-            margin: 8px 0 12px;
+            margin: 8px 0 16px;
             border: 1px solid #ffe9e6;
             line-height: 1.7;
             font-size: 0.95rem;
             color: #6e5656;
         }
 
-        /* ACCENTS MINIMAUX */
         .point-fort {
             background: #fff0ee;
             padding: 3px 14px;
@@ -133,12 +144,34 @@
             padding-top: 14px;
         }
 
-        /* PETIT CŒUR SIMPLE (PAS D'ANIMATION LOURDE) */
         .coeur {
             font-size: 1.8rem;
             text-align: center;
             margin-bottom: 4px;
             color: #c28585;
+        }
+
+        /* BOUTON SIMPLE */
+        .bouton {
+            background: #e6b0b0;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin: 10px 0 5px;
+            box-shadow: 0 5px 0 #b1626b;
+            transition: all 0.05s linear;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .bouton:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #b1626b;
         }
 
         .pied {
@@ -151,7 +184,6 @@
             padding-top: 10px;
         }
 
-        /* === RESPONSIVE === */
         @media (max-height: 650px) {
             .carte { padding: 18px; }
             .message { padding: 16px; }
@@ -164,62 +196,162 @@
 </head>
 <body>
 
-<div class="carte">
-    
-    <div class="cachet">POUR TOI</div>
-    
-    <div class="prenom">Stella</div>
-    <div class="nom">MARIE</div>
-    
-    <!-- MESSAGE SANS AUCUN CHARGEMENT EXTERNE -->
-    <div class="message">
-        <div class="coeur">🤍</div>
+    <canvas id="canvas"></canvas>
+
+    <div class="carte">
+        <div class="cachet">POUR TOI</div>
         
-        Je suis pas venu te vendre un rêve parfait.<br>
-        Je suis pas venu te demander d'être à moi.<br><br>
+        <div class="prenom">Stella</div>
+        <div class="nom">MARIE</div>
         
-        <div class="trait"><span>🌸</span> juste te dire <span>🌸</span></div>
-        <div style="text-align: center;"><span class="gros-texte">je serai là.</span></div><br>
-        
-        Dans tes jours de soleil.<br>
-        Dans tes jours d'orage.<br>
-        Dans tes rires, dans tes silences.<br><br>
-        
-        <div class="trait"><span>💗</span> Je crois en toi <span>💗</span></div>
-        <span class="point-fort">En TOI.</span> Celle qui doute, qui avance,<br>
-        qui tombe, qui se relève.<br><br>
-        
-        <span class="point-fort">Parce que je vois déjà qui tu es.</span><br><br>
-        
-        <div class="trait"><span>✨</span> Apprendre à te connaître <span>✨</span></div>
-        Prendre le temps. Sans forcer.<br>
-        <span class="point-fort">Sans rien précipiter.</span><br><br>
-        
-        Pas par hasard. Pas pour un soir.<br>
-        <span class="point-fort">Pas juste pour un 14 février.</span><br><br>
-        
-        <div style="text-align: center;">
-            <span class="gros-texte">Pour les jours qui comptent.</span><br>
-            <span class="gros-texte" style="margin-top: 6px;">Pour ceux qui compteront.</span>
-        </div><br>
-        
-        Voilà. C'est tout.<br>
-        Je voulais juste que tu saches.<br>
-        
-        <div class="signature">
-            — SERAPHIN.K
+        <div class="message">
+            <div class="coeur">🤍</div>
+            
+            Je suis pas venu te vendre un rêve parfait.<br><br>
+            
+            <div class="trait"><span>🌸</span> juste te dire <span>🌸</span></div>
+            <div style="text-align: center;"><span class="gros-texte">je serai là.</span></div><br>
+            
+            Dans tes jours de soleil.<br>
+            Dans tes jours d'orage.<br>
+            Dans tes rires, dans tes silences.<br><br>
+            
+            <div class="trait"><span>💗</span> Je crois en toi <span>💗</span></div>
+            <span class="point-fort">En TOI.</span> Celle qui doute, qui avance,<br>
+            qui tombe, qui se relève.<br><br>
+            
+            <span class="point-fort">Parce que je vois déjà qui tu es.</span><br><br>
+            
+            <div class="trait"><span>✨</span> Apprendre à te connaître <span>✨</span></div>
+            Prendre le temps. Sans forcer.<br>
+            <span class="point-fort">Sans rien précipiter.</span><br><br>
+            
+            Pas par hasard. Pas pour un soir.<br>
+            <span class="point-fort">Pas juste pour un 14 février.</span><br><br>
+            
+            <div style="text-align: center;">
+                <span class="gros-texte">Pour les jours qui comptent.</span><br>
+                <span class="gros-texte" style="margin-top: 6px;">Pour ceux qui compteront.</span>
+            </div><br>
+            
+            Voilà. C'est tout.<br>
+            Je voulais juste que tu saches.<br>
+            
+            <div class="signature">
+                — SERAPHIN.K
+            </div>
+        </div>
+
+        <!-- BOUTON SIMPLE : DES MILLIERS DE "JE T'AIME" -->
+        <button class="bouton" id="loveButton">❤️ clic ❤️</button>
+
+        <div class="pied">
+            STELLA · SERAPHIN
         </div>
     </div>
-    
-    <!-- RIEN D'AUTRE. PAS D'IMAGES, PAS DE GIFS, PAS DE CANVAS -->
-    
-    <div class="pied">
-        STELLA · SERAPHIN
-    </div>
 
-</div>
+    <script>
+        (function() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            let particles = [];
 
-<!-- PAS DE JAVASCRIPT DU TOUT. ZÉRO. RIEN. -->
+            function resize() {
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = w;
+                canvas.height = h;
+            }
+            resize();
+            window.addEventListener('resize', resize);
 
+            function createLoveExplosion() {
+                const count = 150; // 150 "Je t'aime" d'un coup
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: w/2 + (Math.random() - 0.5) * 200,
+                        y: h/2 + (Math.random() - 0.5) * 200,
+                        vx: (Math.random() - 0.5) * 8,
+                        vy: (Math.random() - 0.5) * 8 - 4,
+                        size: Math.random() * 14 + 12,
+                        opacity: 1,
+                        text: Math.random() > 0.3 ? '❤️' : '🤍',
+                        life: 1
+                    });
+                }
+            }
+
+            function createILoveYou() {
+                const count = 80; // 80 "Je t'aime" textes
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: w/2 + (Math.random() - 0.5) * 300,
+                        y: h/2 + (Math.random() - 0.5) * 250,
+                        vx: (Math.random() - 0.5) * 7,
+                        vy: (Math.random() - 0.5) * 7 - 5,
+                        size: Math.random() * 16 + 14,
+                        opacity: 1,
+                        text: Math.random() > 0.4 ? 'je t\'aime' : '🤍',
+                        life: 1
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    
+                    ctx.font = `${p.size}px Arial, sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#ffb6c1';
+                    ctx.fillStyle = `rgba(194, 113, 122, ${p.opacity})`;
+                    ctx.fillText(p.text, p.x, p.y);
+                    
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.15;
+                    p.opacity -= 0.005;
+                    
+                    if (p.opacity <= 0.02 || p.y > h + 100 || p.x < -100 || p.x > w + 100) {
+                        particles.splice(i, 1);
+                    }
+                }
+                
+                requestAnimationFrame(draw);
+            }
+
+            // Lance l'animation
+            draw();
+
+            // Bouton : alterne entre cœurs et "je t'aime"
+            const btn = document.getElementById('loveButton');
+            let mode = 0; // 0 = cœurs, 1 = je t'aime
+
+            btn.addEventListener('click', function() {
+                // Effet visuel sur le bouton
+                this.style.background = '#c28585';
+                setTimeout(() => {
+                    btn.style.background = '#e6b0b0';
+                }, 150);
+
+                // Alterne entre les deux modes
+                if (mode === 0) {
+                    createLoveExplosion(); // des cœurs
+                } else {
+                    createILoveYou(); // des "je t'aime"
+                }
+                
+                mode = (mode + 1) % 2; // alterne à chaque clic
+            });
+
+            // Blocage scroll
+            document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+        })();
+    </script>
 </body>
 </html>
