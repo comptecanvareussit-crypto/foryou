@@ -2,188 +2,28 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Stella · SERAPHIN.K</title>
     <style>
+        /* === RESET === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #fbefed; /* Rose doux */
+        body {
+            background: #fbefed; /* Rose poudré */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 12px;
-        }
-
-        /* CARTE PRINCIPALE - BIEN ESPACÉE POUR LA LECTURE */
-        .carte {
-            width: 100%;
-            max-width: 440px;
-            background: #fffbfa;
-            border-radius: 40px 40px 40px 16px;
-            padding: 30px 25px;
-            border: 1px solid #ffe4e0;
-            box-shadow: 0 15px 30px rgba(180, 120, 120, 0.08);
-            color: #5f4a4a;
-            max-height: 92vh;
-            overflow-y: auto;
-            scrollbar-width: none;
+            padding: 15px;
             position: relative;
-            z-index: 10;
-            line-height: 1.6;
         }
 
-        .carte::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* ÉLÉMENTS DÉCORATIFS SIMPLES */
-        .cachet {
-            background: #e6b0b0;
-            color: white;
-            padding: 5px 22px;
-            border-radius: 40px;
-            width: fit-content;
-            font-size: 0.65rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-            border: 1px solid white;
-            font-weight: 600;
-            box-shadow: 0 3px 0 #c28585;
-        }
-
-        .prenom {
-            font-size: 2.6rem;
-            font-weight: 700;
-            color: #b1626b;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .nom {
-            font-size: 0.75rem;
-            color: #c28585;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #ffdedb;
-            border-top: 1px solid #ffdedb;
-            padding: 7px 0;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        /* MESSAGE - AÉRÉ POUR FACILITER LA LECTURE */
-        .message {
-            background: #fffaf8;
-            border-radius: 28px;
-            padding: 25px 22px;
-            margin: 10px 0 20px;
-            border: 1px solid #ffe9e6;
-            font-size: 1rem;
-            color: #5f4a4a;
-            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.05);
-        }
-
-        .message p {
-            margin-bottom: 14px;
-        }
-
-        .message p:last-child {
-            margin-bottom: 0;
-        }
-
-        .highlight {
-            background: #ffefed;
-            padding: 3px 14px;
-            border-radius: 40px;
-            display: inline-block;
-            font-weight: 600;
-            color: #b1626b;
-            border: 1px solid #ffd8d2;
-            margin: 4px 0;
-        }
-
-        .separateur {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            color: #c28585;
-            margin: 20px 0 16px;
-            font-size: 0.9rem;
-        }
-
-        .gros {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #b1626b;
-            background: #fff4f1;
-            padding: 6px 18px;
-            border-radius: 50px;
-            display: inline-block;
-            margin: 6px 0;
-            border: 1px dashed #c28585;
-        }
-
-        .signature {
-            text-align: right;
-            margin-top: 20px;
-            color: #b1626b;
-            font-size: 1.15rem;
-            border-top: 1px dashed #ffd8d2;
-            padding-top: 16px;
-        }
-
-        .petit-coeur {
-            font-size: 1.9rem;
-            text-align: center;
-            margin-bottom: 8px;
-            color: #c28585;
-        }
-
-        /* BOUTON SUPER SIMPLE */
-        .bouton {
-            background: #e6b0b0;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 16px 0;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin: 12px 0 8px;
-            box-shadow: 0 5px 0 #b1626b;
-            transition: all 0.05s linear;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .bouton:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 #b1626b;
-        }
-
-        .pied {
-            color: rgba(180, 120, 120, 0.3);
-            font-size: 0.55rem;
-            text-align: center;
-            margin-top: 14px;
-            letter-spacing: 8px;
-            border-top: 1px solid #ffdedb;
-            padding-top: 12px;
-        }
-
-        /* ANIMATION DE CŒURS FLOTTANTS - TRÈS LÉGÈRE */
+        /* CŒURS FLOTTANTS ULTRA LÉGERS (PAS DE JS) */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -191,24 +31,25 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .heart-float {
+        .heart {
             position: absolute;
-            color: rgba(194, 113, 122, 0.4);
+            color: rgba(194, 113, 122, 0.2);
             font-size: 24px;
-            animation: floatUp 6s linear forwards;
+            animation: float 8s infinite linear;
             user-select: none;
         }
 
-        @keyframes floatUp {
+        @keyframes float {
             0% {
-                transform: translateY(100vh) scale(0.3);
+                transform: translateY(100vh) scale(0.5);
                 opacity: 0;
             }
             20% {
-                opacity: 0.8;
+                opacity: 0.6;
             }
             100% {
                 transform: translateY(-20vh) scale(1.2);
@@ -216,45 +57,196 @@
             }
         }
 
-        /* RESPONSIVE */
-        @media (max-height: 700px) {
-            .carte { padding: 22px; }
-            .message { padding: 20px; }
+        /* === CARTE PRINCIPALE - SIMPLE ET LISIBLE === */
+        .carte {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 500px;
+            background: #fffbfa;
+            border-radius: 40px 40px 40px 16px;
+            padding: 35px 30px;
+            border: 1px solid #ffe4e0;
+            box-shadow: 0 15px 30px rgba(180, 120, 120, 0.1);
+            color: #5f4a4a;
+            line-height: 1.7;
         }
-        @media (max-width: 360px) {
-            .prenom { font-size: 2.2rem; }
-            .message { font-size: 0.95rem; }
+
+        /* EN-TÊTE */
+        .cachet {
+            background: #e6b0b0;
+            color: white;
+            padding: 6px 24px;
+            border-radius: 40px;
+            width: fit-content;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid white;
+            font-weight: 600;
+            box-shadow: 0 3px 0 #c28585;
+        }
+
+        .prenom {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #b1626b;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .nom {
+            font-size: 0.8rem;
+            color: #c28585;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ffdedb;
+            border-top: 1px solid #ffdedb;
+            padding: 8px 0;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        /* MESSAGE - TRÈS AÉRÉ */
+        .message {
+            background: #fffaf8;
+            border-radius: 30px;
+            padding: 30px 28px;
+            margin: 15px 0 20px;
+            border: 1px solid #ffe9e6;
+            font-size: 1.05rem;
+            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.05);
+        }
+
+        .message p {
+            margin-bottom: 18px;
+        }
+
+        .message p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ACCENTS VISUELS SIMPLES */
+        .separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            color: #c28585;
+            margin: 22px 0 18px;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background: #ffefed;
+            padding: 4px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
+            color: #b1626b;
+            border: 1px solid #ffd8d2;
+        }
+
+        .big {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #b1626b;
+            background: #fff4f1;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 8px 0;
+            border: 1px dashed #c28585;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 22px;
+            color: #b1626b;
+            font-size: 1.2rem;
+            border-top: 1px dashed #ffd8d2;
+            padding-top: 18px;
+        }
+
+        .heart-icon {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #c28585;
+        }
+
+        /* BAS DE PAGE */
+        .footer {
+            color: rgba(180, 120, 120, 0.3);
+            font-size: 0.6rem;
+            text-align: center;
+            margin-top: 18px;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            border-top: 1px solid #ffdedb;
+            padding-top: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 450px) {
+            .carte { padding: 25px 20px; }
+            .prenom { font-size: 2.3rem; }
+            .message { padding: 22px; font-size: 0.98rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CONTENEUR POUR LES CŒURS FLOTTANTS -->
-    <div class="floating-hearts" id="heartContainer"></div>
+    <!-- CŒURS FLOTTANTS - 20 CŒURS SEULEMENT, ULTRA LÉGER -->
+    <div class="floating-hearts">
+        <div class="heart" style="left: 5%; animation-delay: 0s;">❤️</div>
+        <div class="heart" style="left: 15%; animation-delay: 2s;">🤍</div>
+        <div class="heart" style="left: 25%; animation-delay: 1s;">❤️</div>
+        <div class="heart" style="left: 35%; animation-delay: 3s;">🤍</div>
+        <div class="heart" style="left: 45%; animation-delay: 0.5s;">❤️</div>
+        <div class="heart" style="left: 55%; animation-delay: 2.5s;">🤍</div>
+        <div class="heart" style="left: 65%; animation-delay: 1.5s;">❤️</div>
+        <div class="heart" style="left: 75%; animation-delay: 3.5s;">🤍</div>
+        <div class="heart" style="left: 85%; animation-delay: 0.8s;">❤️</div>
+        <div class="heart" style="left: 95%; animation-delay: 2.2s;">🤍</div>
+        <div class="heart" style="left: 10%; animation-delay: 4s;">❤️</div>
+        <div class="heart" style="left: 30%; animation-delay: 5s;">🤍</div>
+        <div class="heart" style="left: 50%; animation-delay: 4.5s;">❤️</div>
+        <div class="heart" style="left: 70%; animation-delay: 5.5s;">🤍</div>
+        <div class="heart" style="left: 90%; animation-delay: 4.2s;">❤️</div>
+        <div class="heart" style="left: 20%; animation-delay: 6s;">🤍</div>
+        <div class="heart" style="left: 40%; animation-delay: 6.5s;">❤️</div>
+        <div class="heart" style="left: 60%; animation-delay: 7s;">🤍</div>
+        <div class="heart" style="left: 80%; animation-delay: 7.5s;">❤️</div>
+        <div class="heart" style="left: 33%; animation-delay: 8s;">🤍</div>
+    </div>
 
+    <!-- CARTE PRINCIPALE -->
     <div class="carte">
+        
         <div class="cachet">POUR TOI</div>
         
         <div class="prenom">Stella</div>
         <div class="nom">MARIE</div>
         
-        <!-- MESSAGE LISIBLE ET AÉRÉ -->
+        <!-- MESSAGE COMPLET, TRÈS LISIBLE -->
         <div class="message">
-            <div class="petit-coeur">🤍</div>
+            <div class="heart-icon">🤍</div>
             
             <p>Je suis pas venu te vendre un rêve parfait.</p>
             
-            <div class="separateur">
+            <div class="separator">
                 <span>🌸</span> juste te dire <span>🌸</span>
             </div>
             
-            <p style="text-align: center;"><span class="gros">je serai là.</span></p>
+            <p style="text-align: center;"><span class="big">je serai là.</span></p>
             
             <p>Dans tes jours de soleil.<br>
             Dans tes jours d'orage.<br>
             Dans tes rires, dans tes silences.</p>
             
-            <div class="separateur">
+            <div class="separator">
                 <span>💗</span> Je crois en toi <span>💗</span>
             </div>
             
@@ -263,7 +255,7 @@
             
             <p><span class="highlight">Parce que je vois déjà qui tu es.</span></p>
             
-            <div class="separateur">
+            <div class="separator">
                 <span>✨</span> Apprendre à te connaître <span>✨</span>
             </div>
             
@@ -274,8 +266,8 @@
             <span class="highlight">Pas juste pour un 14 février.</span></p>
             
             <p style="text-align: center;">
-                <span class="gros">Pour les jours qui comptent.</span><br>
-                <span class="gros" style="margin-top: 8px;">Pour ceux qui compteront.</span>
+                <span class="big">Pour les jours qui comptent.</span><br>
+                <span class="big" style="margin-top: 10px;">Pour ceux qui compteront.</span>
             </p>
             
             <p>Voilà. C'est tout.<br>
@@ -285,93 +277,21 @@
                 — SERAPHIN.K
             </div>
         </div>
-
-        <!-- BOUTON SIMPLE -->
-        <button class="bouton" id="loveBtn">❤️ faire apparaître l'amour ❤️</button>
-
-        <div class="pied">
+        
+        <!-- MESSAGE D'AMOUR SIMPLE (SANS BOUTON) -->
+        <div style="text-align: center; margin: 15px 0 5px; font-size: 1.3rem; color: #c28585;">
+            ❤️ 🤍 ❤️
+        </div>
+        <div style="text-align: center; color: #b1626b; font-size: 1rem; font-style: italic;">
+            je t'aime
+        </div>
+        
+        <div class="footer">
             STELLA · SERAPHIN
         </div>
+
     </div>
 
-    <script>
-        (function() {
-            "use strict";
-
-            const heartContainer = document.getElementById('heartContainer');
-            const btn = document.getElementById('loveBtn');
-            
-            // Fonction pour créer un cœur ou un "je t'aime" flottant
-            function createFloatingElement(type) {
-                const el = document.createElement('div');
-                el.className = 'heart-float';
-                
-                // Choisir le contenu selon le type
-                if (type === 'heart') {
-                    el.innerHTML = Math.random() > 0.5 ? '❤️' : '🤍';
-                } else {
-                    el.innerHTML = 'je t\'aime';
-                    el.style.fontSize = '18px';
-                    el.style.fontWeight = '500';
-                    el.style.color = 'rgba(194, 113, 122, 0.7)';
-                }
-                
-                // Position aléatoire en bas de l'écran
-                el.style.left = Math.random() * 100 + '%';
-                el.style.bottom = '0';
-                
-                // Animation aléatoire
-                el.style.animationDuration = (Math.random() * 4 + 5) + 's';
-                el.style.fontSize = (Math.floor(Math.random() * 16) + 18) + 'px';
-                
-                heartContainer.appendChild(el);
-                
-                // Supprimer après l'animation
-                setTimeout(() => {
-                    el.remove();
-                }, 8000);
-            }
-            
-            // Variable pour alterner
-            let mode = 0; // 0 = cœurs, 1 = je t'aime
-            
-            btn.addEventListener('click', function() {
-                // Effet sur le bouton
-                this.style.background = '#c28585';
-                setTimeout(() => {
-                    btn.style.background = '#e6b0b0';
-                }, 150);
-                
-                // Créer une vague de 20 éléments selon le mode
-                const count = 25; // 25 éléments à chaque clic
-                
-                for (let i = 0; i < count; i++) {
-                    setTimeout(() => {
-                        if (mode === 0) {
-                            createFloatingElement('heart');
-                        } else {
-                            createFloatingElement('love');
-                        }
-                    }, i * 30); // Léger décalage pour un effet de vague
-                }
-                
-                // Alterner le mode pour le prochain clic
-                mode = (mode + 1) % 2;
-                
-                // Changer le texte du bouton selon le mode
-                if (mode === 0) {
-                    btn.innerHTML = '❤️ faire apparaître l\'amour ❤️';
-                } else {
-                    btn.innerHTML = '🤍 faire apparaître "je t\'aime" 🤍';
-                }
-            });
-
-            // Blocage du scroll
-            document.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-            }, { passive: false });
-
-        })();
-    </script>
+    <!-- PAS DE JAVASCRIPT DU TOUT -->
 </body>
 </html>
