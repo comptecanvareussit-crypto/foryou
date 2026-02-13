@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Stella · SERAPHIN.K</title>
     <style>
-        /* === RESET === */
+        /* === RÉINITIALISATION SIMPLE === */
         * {
             margin: 0;
             padding: 0;
@@ -13,17 +13,17 @@
         }
 
         body {
-            background: #fbefed; /* Rose poudré */
+            background: #fbefed; /* Rose poudré doux */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 16px;
             position: relative;
         }
 
-        /* CŒURS FLOTTANTS ULTRA LÉGERS (PAS DE JS) */
+        /* === CŒURS FLOTTANTS EN CSS PUR (20 cœurs, ultra léger) === */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -39,7 +39,7 @@
             position: absolute;
             color: rgba(194, 113, 122, 0.2);
             font-size: 24px;
-            animation: float 8s infinite linear;
+            animation: float 10s infinite linear;
             user-select: none;
         }
 
@@ -57,18 +57,18 @@
             }
         }
 
-        /* === CARTE PRINCIPALE - SIMPLE ET LISIBLE === */
+        /* === CARTE PRINCIPALE - LISIBLE, ÉLÉGANTE === */
         .carte {
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             background: #fffbfa;
-            border-radius: 40px 40px 40px 16px;
-            padding: 35px 30px;
+            border-radius: 42px 42px 42px 18px;
+            padding: 38px 32px;
             border: 1px solid #ffe4e0;
-            box-shadow: 0 15px 30px rgba(180, 120, 120, 0.1);
-            color: #5f4a4a;
+            box-shadow: 0 20px 35px rgba(170, 110, 110, 0.08);
+            color: #5c4545;
             line-height: 1.7;
         }
 
@@ -77,19 +77,19 @@
             background: #e6b0b0;
             color: white;
             padding: 6px 24px;
-            border-radius: 40px;
+            border-radius: 50px;
             width: fit-content;
             font-size: 0.7rem;
             letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             border: 1px solid white;
             font-weight: 600;
             box-shadow: 0 3px 0 #c28585;
         }
 
         .prenom {
-            font-size: 2.8rem;
+            font-size: 2.9rem;
             font-weight: 700;
             color: #b1626b;
             line-height: 1;
@@ -108,15 +108,15 @@
             margin-bottom: 25px;
         }
 
-        /* MESSAGE - TRÈS AÉRÉ */
+        /* ZONE DU MESSAGE */
         .message {
             background: #fffaf8;
-            border-radius: 30px;
-            padding: 30px 28px;
+            border-radius: 32px;
+            padding: 32px 28px;
             margin: 15px 0 20px;
             border: 1px solid #ffe9e6;
             font-size: 1.05rem;
-            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.05);
+            box-shadow: 0 8px 20px rgba(194, 113, 122, 0.05);
         }
 
         .message p {
@@ -127,7 +127,7 @@
             margin-bottom: 0;
         }
 
-        /* ACCENTS VISUELS SIMPLES */
+        /* ÉLÉMENTS DE STYLE */
         .separator {
             display: flex;
             justify-content: center;
@@ -153,7 +153,7 @@
             font-weight: 700;
             color: #b1626b;
             background: #fff4f1;
-            padding: 8px 20px;
+            padding: 8px 22px;
             border-radius: 50px;
             display: inline-block;
             margin: 8px 0;
@@ -162,11 +162,11 @@
 
         .signature {
             text-align: right;
-            margin-top: 22px;
+            margin-top: 20px;
             color: #b1626b;
             font-size: 1.2rem;
             border-top: 1px dashed #ffd8d2;
-            padding-top: 18px;
+            padding-top: 16px;
         }
 
         .heart-icon {
@@ -176,12 +176,25 @@
             color: #c28585;
         }
 
-        /* BAS DE PAGE */
+        /* LIGNE DE FIN */
+        .final-line {
+            text-align: center;
+            margin: 25px 0 10px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #b1626b;
+            font-style: italic;
+            background: #fff1ef;
+            padding: 12px;
+            border-radius: 60px;
+            border: 1px solid #ffd8d2;
+        }
+
         .footer {
-            color: rgba(180, 120, 120, 0.3);
+            color: rgba(170, 110, 110, 0.3);
             font-size: 0.6rem;
             text-align: center;
-            margin-top: 18px;
+            margin-top: 20px;
             letter-spacing: 10px;
             text-transform: uppercase;
             border-top: 1px solid #ffdedb;
@@ -189,37 +202,37 @@
         }
 
         /* RESPONSIVE */
-        @media (max-width: 450px) {
-            .carte { padding: 25px 20px; }
-            .prenom { font-size: 2.3rem; }
-            .message { padding: 22px; font-size: 0.98rem; }
+        @media (max-width: 480px) {
+            .carte { padding: 28px 22px; }
+            .prenom { font-size: 2.4rem; }
+            .message { padding: 24px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CŒURS FLOTTANTS - 20 CŒURS SEULEMENT, ULTRA LÉGER -->
+    <!-- 20 CŒURS FLOTTANTS FIXES -->
     <div class="floating-hearts">
-        <div class="heart" style="left: 5%; animation-delay: 0s;">❤️</div>
-        <div class="heart" style="left: 15%; animation-delay: 2s;">🤍</div>
-        <div class="heart" style="left: 25%; animation-delay: 1s;">❤️</div>
-        <div class="heart" style="left: 35%; animation-delay: 3s;">🤍</div>
-        <div class="heart" style="left: 45%; animation-delay: 0.5s;">❤️</div>
-        <div class="heart" style="left: 55%; animation-delay: 2.5s;">🤍</div>
-        <div class="heart" style="left: 65%; animation-delay: 1.5s;">❤️</div>
-        <div class="heart" style="left: 75%; animation-delay: 3.5s;">🤍</div>
-        <div class="heart" style="left: 85%; animation-delay: 0.8s;">❤️</div>
-        <div class="heart" style="left: 95%; animation-delay: 2.2s;">🤍</div>
-        <div class="heart" style="left: 10%; animation-delay: 4s;">❤️</div>
-        <div class="heart" style="left: 30%; animation-delay: 5s;">🤍</div>
-        <div class="heart" style="left: 50%; animation-delay: 4.5s;">❤️</div>
-        <div class="heart" style="left: 70%; animation-delay: 5.5s;">🤍</div>
-        <div class="heart" style="left: 90%; animation-delay: 4.2s;">❤️</div>
-        <div class="heart" style="left: 20%; animation-delay: 6s;">🤍</div>
-        <div class="heart" style="left: 40%; animation-delay: 6.5s;">❤️</div>
-        <div class="heart" style="left: 60%; animation-delay: 7s;">🤍</div>
-        <div class="heart" style="left: 80%; animation-delay: 7.5s;">❤️</div>
-        <div class="heart" style="left: 33%; animation-delay: 8s;">🤍</div>
+        <div class="heart" style="left: 3%; animation-delay: 0s;">❤️</div>
+        <div class="heart" style="left: 12%; animation-delay: 1.8s;">🤍</div>
+        <div class="heart" style="left: 21%; animation-delay: 0.7s;">❤️</div>
+        <div class="heart" style="left: 30%; animation-delay: 2.9s;">🤍</div>
+        <div class="heart" style="left: 38%; animation-delay: 1.2s;">❤️</div>
+        <div class="heart" style="left: 47%; animation-delay: 3.3s;">🤍</div>
+        <div class="heart" style="left: 55%; animation-delay: 0.4s;">❤️</div>
+        <div class="heart" style="left: 64%; animation-delay: 2.1s;">🤍</div>
+        <div class="heart" style="left: 72%; animation-delay: 1.5s;">❤️</div>
+        <div class="heart" style="left: 81%; animation-delay: 3.8s;">🤍</div>
+        <div class="heart" style="left: 89%; animation-delay: 0.9s;">❤️</div>
+        <div class="heart" style="left: 96%; animation-delay: 2.5s;">🤍</div>
+        <div class="heart" style="left: 8%; animation-delay: 4.2s;">❤️</div>
+        <div class="heart" style="left: 18%; animation-delay: 5.1s;">🤍</div>
+        <div class="heart" style="left: 27%; animation-delay: 4.7s;">❤️</div>
+        <div class="heart" style="left: 35%; animation-delay: 5.6s;">🤍</div>
+        <div class="heart" style="left: 44%; animation-delay: 6.3s;">❤️</div>
+        <div class="heart" style="left: 52%; animation-delay: 7.0s;">🤍</div>
+        <div class="heart" style="left: 60%; animation-delay: 6.8s;">❤️</div>
+        <div class="heart" style="left: 68%; animation-delay: 7.5s;">🤍</div>
     </div>
 
     <!-- CARTE PRINCIPALE -->
@@ -230,7 +243,7 @@
         <div class="prenom">Stella</div>
         <div class="nom">MARIE</div>
         
-        <!-- MESSAGE COMPLET, TRÈS LISIBLE -->
+        <!-- MESSAGE COMPLET AVEC "TU COMPTES. VRAIMENT." INTÉGRÉ -->
         <div class="message">
             <div class="heart-icon">🤍</div>
             
@@ -273,17 +286,17 @@
             <p>Voilà. C'est tout.<br>
             Je voulais juste que tu saches.</p>
             
+            <!-- LA PHRASE FINALE PARFAITE -->
+            <div style="text-align: center; margin: 25px 0 10px;">
+                <span style="font-size: 1.5rem; color: #b1626b;">❤️</span>
+            </div>
+            <div class="final-line">
+                Tu comptes. Vraiment.
+            </div>
+            
             <div class="signature">
                 — SERAPHIN.K
             </div>
-        </div>
-        
-        <!-- MESSAGE D'AMOUR SIMPLE (SANS BOUTON) -->
-        <div style="text-align: center; margin: 15px 0 5px; font-size: 1.3rem; color: #c28585;">
-            ❤️ 🤍 ❤️
-        </div>
-        <div style="text-align: center; color: #b1626b; font-size: 1rem; font-style: italic;">
-            je t'aime
         </div>
         
         <div class="footer">
@@ -292,6 +305,6 @@
 
     </div>
 
-    <!-- PAS DE JAVASCRIPT DU TOUT -->
+    <!-- PAS DE JAVASCRIPT - JUSTE DU HTML ET CSS -->
 </body>
 </html>
