@@ -15,154 +15,153 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #fbeeec;
+            background: #fbefed; /* Rose doux */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
-            position: relative;
+            padding: 12px;
         }
 
-        /* CANVAS POUR LES CŒURS ET TEXTES */
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* CARTE PRINCIPALE */
+        /* CARTE PRINCIPALE - BIEN ESPACÉE POUR LA LECTURE */
         .carte {
-            position: relative;
-            z-index: 10;
             width: 100%;
-            max-width: 420px;
-            background: #fffcf9;
-            border-radius: 40px 40px 40px 12px;
-            padding: 28px 24px;
-            border: 1px solid #ffe3e0;
+            max-width: 440px;
+            background: #fffbfa;
+            border-radius: 40px 40px 40px 16px;
+            padding: 30px 25px;
+            border: 1px solid #ffe4e0;
             box-shadow: 0 15px 30px rgba(180, 120, 120, 0.08);
-            color: #6e5656;
-            max-height: 90vh;
+            color: #5f4a4a;
+            max-height: 92vh;
             overflow-y: auto;
             scrollbar-width: none;
+            position: relative;
+            z-index: 10;
+            line-height: 1.6;
         }
 
         .carte::-webkit-scrollbar {
             display: none;
         }
 
+        /* ÉLÉMENTS DÉCORATIFS SIMPLES */
         .cachet {
             background: #e6b0b0;
             color: white;
-            padding: 4px 20px;
+            padding: 5px 22px;
             border-radius: 40px;
             width: fit-content;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
+            font-size: 0.65rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             border: 1px solid white;
             font-weight: 600;
             box-shadow: 0 3px 0 #c28585;
         }
 
         .prenom {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             font-weight: 700;
             color: #b1626b;
             line-height: 1;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .nom {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #c28585;
             letter-spacing: 10px;
             text-transform: uppercase;
             border-bottom: 1px solid #ffdedb;
             border-top: 1px solid #ffdedb;
-            padding: 6px 0;
+            padding: 7px 0;
             display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* MESSAGE - AÉRÉ POUR FACILITER LA LECTURE */
+        .message {
+            background: #fffaf8;
+            border-radius: 28px;
+            padding: 25px 22px;
+            margin: 10px 0 20px;
+            border: 1px solid #ffe9e6;
+            font-size: 1rem;
+            color: #5f4a4a;
+            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.05);
+        }
+
+        .message p {
             margin-bottom: 14px;
         }
 
-        /* MESSAGE */
-        .message {
-            background: #fffaf8;
-            border-radius: 26px;
-            padding: 22px 20px;
-            margin: 8px 0 16px;
-            border: 1px solid #ffe9e6;
-            line-height: 1.7;
-            font-size: 0.95rem;
-            color: #6e5656;
+        .message p:last-child {
+            margin-bottom: 0;
         }
 
-        .point-fort {
-            background: #fff0ee;
+        .highlight {
+            background: #ffefed;
             padding: 3px 14px;
             border-radius: 40px;
             display: inline-block;
             font-weight: 600;
             color: #b1626b;
-            border: 1px solid #ffcec9;
-            margin: 2px 0;
+            border: 1px solid #ffd8d2;
+            margin: 4px 0;
         }
 
-        .trait {
+        .separateur {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
             color: #c28585;
-            font-size: 0.8rem;
-            margin: 12px 0;
+            margin: 20px 0 16px;
+            font-size: 0.9rem;
         }
 
-        .gros-texte {
-            font-size: 1.1rem;
+        .gros {
+            font-size: 1.15rem;
             font-weight: 700;
             color: #b1626b;
-            background: #fff3f1;
-            padding: 6px 16px;
+            background: #fff4f1;
+            padding: 6px 18px;
             border-radius: 50px;
             display: inline-block;
-            margin: 5px 0;
+            margin: 6px 0;
             border: 1px dashed #c28585;
         }
 
         .signature {
             text-align: right;
-            margin-top: 16px;
+            margin-top: 20px;
             color: #b1626b;
-            font-size: 1.1rem;
-            border-top: 1px dashed #ffd2cd;
-            padding-top: 14px;
+            font-size: 1.15rem;
+            border-top: 1px dashed #ffd8d2;
+            padding-top: 16px;
         }
 
-        .coeur {
-            font-size: 1.8rem;
+        .petit-coeur {
+            font-size: 1.9rem;
             text-align: center;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             color: #c28585;
         }
 
-        /* BOUTON SIMPLE */
+        /* BOUTON SUPER SIMPLE */
         .bouton {
             background: #e6b0b0;
             color: white;
             border: none;
             width: 100%;
-            padding: 16px 20px;
+            padding: 16px 0;
             border-radius: 60px;
             font-size: 1.1rem;
             font-weight: 600;
             letter-spacing: 2px;
-            margin: 10px 0 5px;
+            margin: 12px 0 8px;
             box-shadow: 0 5px 0 #b1626b;
             transition: all 0.05s linear;
             cursor: pointer;
@@ -175,28 +174,63 @@
         }
 
         .pied {
-            color: rgba(180, 120, 120, 0.25);
-            font-size: 0.5rem;
+            color: rgba(180, 120, 120, 0.3);
+            font-size: 0.55rem;
             text-align: center;
-            margin-top: 12px;
+            margin-top: 14px;
             letter-spacing: 8px;
             border-top: 1px solid #ffdedb;
-            padding-top: 10px;
+            padding-top: 12px;
         }
 
-        @media (max-height: 650px) {
-            .carte { padding: 18px; }
-            .message { padding: 16px; }
+        /* ANIMATION DE CŒURS FLOTTANTS - TRÈS LÉGÈRE */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(194, 113, 122, 0.4);
+            font-size: 24px;
+            animation: floatUp 6s linear forwards;
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.3);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-height: 700px) {
+            .carte { padding: 22px; }
+            .message { padding: 20px; }
         }
         @media (max-width: 360px) {
-            .prenom { font-size: 2.1rem; }
-            .message { font-size: 0.9rem; }
+            .prenom { font-size: 2.2rem; }
+            .message { font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="canvas"></canvas>
+    <!-- CONTENEUR POUR LES CŒURS FLOTTANTS -->
+    <div class="floating-hearts" id="heartContainer"></div>
 
     <div class="carte">
         <div class="cachet">POUR TOI</div>
@@ -204,46 +238,56 @@
         <div class="prenom">Stella</div>
         <div class="nom">MARIE</div>
         
+        <!-- MESSAGE LISIBLE ET AÉRÉ -->
         <div class="message">
-            <div class="coeur">🤍</div>
+            <div class="petit-coeur">🤍</div>
             
-            Je suis pas venu te vendre un rêve parfait.<br><br>
+            <p>Je suis pas venu te vendre un rêve parfait.</p>
             
-            <div class="trait"><span>🌸</span> juste te dire <span>🌸</span></div>
-            <div style="text-align: center;"><span class="gros-texte">je serai là.</span></div><br>
+            <div class="separateur">
+                <span>🌸</span> juste te dire <span>🌸</span>
+            </div>
             
-            Dans tes jours de soleil.<br>
+            <p style="text-align: center;"><span class="gros">je serai là.</span></p>
+            
+            <p>Dans tes jours de soleil.<br>
             Dans tes jours d'orage.<br>
-            Dans tes rires, dans tes silences.<br><br>
+            Dans tes rires, dans tes silences.</p>
             
-            <div class="trait"><span>💗</span> Je crois en toi <span>💗</span></div>
-            <span class="point-fort">En TOI.</span> Celle qui doute, qui avance,<br>
-            qui tombe, qui se relève.<br><br>
+            <div class="separateur">
+                <span>💗</span> Je crois en toi <span>💗</span>
+            </div>
             
-            <span class="point-fort">Parce que je vois déjà qui tu es.</span><br><br>
+            <p><span class="highlight">En TOI.</span> Celle qui doute, qui avance,<br>
+            qui tombe, qui se relève.</p>
             
-            <div class="trait"><span>✨</span> Apprendre à te connaître <span>✨</span></div>
-            Prendre le temps. Sans forcer.<br>
-            <span class="point-fort">Sans rien précipiter.</span><br><br>
+            <p><span class="highlight">Parce que je vois déjà qui tu es.</span></p>
             
-            Pas par hasard. Pas pour un soir.<br>
-            <span class="point-fort">Pas juste pour un 14 février.</span><br><br>
+            <div class="separateur">
+                <span>✨</span> Apprendre à te connaître <span>✨</span>
+            </div>
             
-            <div style="text-align: center;">
-                <span class="gros-texte">Pour les jours qui comptent.</span><br>
-                <span class="gros-texte" style="margin-top: 6px;">Pour ceux qui compteront.</span>
-            </div><br>
+            <p>Prendre le temps. Sans forcer.<br>
+            <span class="highlight">Sans rien précipiter.</span></p>
             
-            Voilà. C'est tout.<br>
-            Je voulais juste que tu saches.<br>
+            <p>Pas par hasard. Pas pour un soir.<br>
+            <span class="highlight">Pas juste pour un 14 février.</span></p>
+            
+            <p style="text-align: center;">
+                <span class="gros">Pour les jours qui comptent.</span><br>
+                <span class="gros" style="margin-top: 8px;">Pour ceux qui compteront.</span>
+            </p>
+            
+            <p>Voilà. C'est tout.<br>
+            Je voulais juste que tu saches.</p>
             
             <div class="signature">
                 — SERAPHIN.K
             </div>
         </div>
 
-        <!-- BOUTON SIMPLE : DES MILLIERS DE "JE T'AIME" -->
-        <button class="bouton" id="loveButton">❤️ clic ❤️</button>
+        <!-- BOUTON SIMPLE -->
+        <button class="bouton" id="loveBtn">❤️ faire apparaître l'amour ❤️</button>
 
         <div class="pied">
             STELLA · SERAPHIN
@@ -252,105 +296,81 @@
 
     <script>
         (function() {
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-            let w, h;
-            let particles = [];
+            "use strict";
 
-            function resize() {
-                w = window.innerWidth;
-                h = window.innerHeight;
-                canvas.width = w;
-                canvas.height = h;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            function createLoveExplosion() {
-                const count = 150; // 150 "Je t'aime" d'un coup
-                for (let i = 0; i < count; i++) {
-                    particles.push({
-                        x: w/2 + (Math.random() - 0.5) * 200,
-                        y: h/2 + (Math.random() - 0.5) * 200,
-                        vx: (Math.random() - 0.5) * 8,
-                        vy: (Math.random() - 0.5) * 8 - 4,
-                        size: Math.random() * 14 + 12,
-                        opacity: 1,
-                        text: Math.random() > 0.3 ? '❤️' : '🤍',
-                        life: 1
-                    });
-                }
-            }
-
-            function createILoveYou() {
-                const count = 80; // 80 "Je t'aime" textes
-                for (let i = 0; i < count; i++) {
-                    particles.push({
-                        x: w/2 + (Math.random() - 0.5) * 300,
-                        y: h/2 + (Math.random() - 0.5) * 250,
-                        vx: (Math.random() - 0.5) * 7,
-                        vy: (Math.random() - 0.5) * 7 - 5,
-                        size: Math.random() * 16 + 14,
-                        opacity: 1,
-                        text: Math.random() > 0.4 ? 'je t\'aime' : '🤍',
-                        life: 1
-                    });
-                }
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, w, h);
+            const heartContainer = document.getElementById('heartContainer');
+            const btn = document.getElementById('loveBtn');
+            
+            // Fonction pour créer un cœur ou un "je t'aime" flottant
+            function createFloatingElement(type) {
+                const el = document.createElement('div');
+                el.className = 'heart-float';
                 
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const p = particles[i];
-                    
-                    ctx.font = `${p.size}px Arial, sans-serif`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowColor = '#ffb6c1';
-                    ctx.fillStyle = `rgba(194, 113, 122, ${p.opacity})`;
-                    ctx.fillText(p.text, p.x, p.y);
-                    
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.vy += 0.15;
-                    p.opacity -= 0.005;
-                    
-                    if (p.opacity <= 0.02 || p.y > h + 100 || p.x < -100 || p.x > w + 100) {
-                        particles.splice(i, 1);
-                    }
+                // Choisir le contenu selon le type
+                if (type === 'heart') {
+                    el.innerHTML = Math.random() > 0.5 ? '❤️' : '🤍';
+                } else {
+                    el.innerHTML = 'je t\'aime';
+                    el.style.fontSize = '18px';
+                    el.style.fontWeight = '500';
+                    el.style.color = 'rgba(194, 113, 122, 0.7)';
                 }
                 
-                requestAnimationFrame(draw);
+                // Position aléatoire en bas de l'écran
+                el.style.left = Math.random() * 100 + '%';
+                el.style.bottom = '0';
+                
+                // Animation aléatoire
+                el.style.animationDuration = (Math.random() * 4 + 5) + 's';
+                el.style.fontSize = (Math.floor(Math.random() * 16) + 18) + 'px';
+                
+                heartContainer.appendChild(el);
+                
+                // Supprimer après l'animation
+                setTimeout(() => {
+                    el.remove();
+                }, 8000);
             }
-
-            // Lance l'animation
-            draw();
-
-            // Bouton : alterne entre cœurs et "je t'aime"
-            const btn = document.getElementById('loveButton');
+            
+            // Variable pour alterner
             let mode = 0; // 0 = cœurs, 1 = je t'aime
-
+            
             btn.addEventListener('click', function() {
-                // Effet visuel sur le bouton
+                // Effet sur le bouton
                 this.style.background = '#c28585';
                 setTimeout(() => {
                     btn.style.background = '#e6b0b0';
                 }, 150);
-
-                // Alterne entre les deux modes
-                if (mode === 0) {
-                    createLoveExplosion(); // des cœurs
-                } else {
-                    createILoveYou(); // des "je t'aime"
+                
+                // Créer une vague de 20 éléments selon le mode
+                const count = 25; // 25 éléments à chaque clic
+                
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        if (mode === 0) {
+                            createFloatingElement('heart');
+                        } else {
+                            createFloatingElement('love');
+                        }
+                    }, i * 30); // Léger décalage pour un effet de vague
                 }
                 
-                mode = (mode + 1) % 2; // alterne à chaque clic
+                // Alterner le mode pour le prochain clic
+                mode = (mode + 1) % 2;
+                
+                // Changer le texte du bouton selon le mode
+                if (mode === 0) {
+                    btn.innerHTML = '❤️ faire apparaître l\'amour ❤️';
+                } else {
+                    btn.innerHTML = '🤍 faire apparaître "je t\'aime" 🤍';
+                }
             });
 
-            // Blocage scroll
-            document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+            // Blocage du scroll
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+
         })();
     </script>
 </body>
