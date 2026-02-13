@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Stella · SERAPHIN.K</title>
+    <title>Stella</title>
     <style>
-        /* ===== RESET OPTIMISÉ MOBILE ===== */
+        /* === RESET ULTRA RAPIDE === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            position: fixed;
-            background: #fbefed; /* Rose poudré plus clair, plus doux */
+            background: #fbeeec; /* Rose poudré doux */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -26,383 +24,202 @@
             padding: 10px;
         }
 
-        /* ===== PAS DE CANVAS ===== */
-        /* Remplacé par des cœurs CSS ultra légers */
-        
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* === UNE SEULE CARTE, LÉGÈRE === */
+        .carte {
             width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .float-heart {
-            position: absolute;
-            color: rgba(194, 113, 122, 0.2);
-            font-size: 20px;
-            animation: floatUp 8s linear infinite;
-            user-select: none;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
-        }
-
-        /* ===== CARTE PRINCIPALE - ULTRA LÉGÈRE ===== */
-        .letter {
-            position: relative;
-            z-index: 30;
-            width: 100%;
-            max-width: 440px;
-            background: #fffbfa; /* Blanc cassé plus doux */
-            border-radius: 40px 40px 40px 16px;
-            padding: 26px 22px;
-            border: 1px solid #ffe1df;
-            box-shadow: 0 15px 35px rgba(194, 113, 122, 0.1);
-            color: #735c5c;
-            display: flex;
-            flex-direction: column;
-            max-height: 90vh;
+            max-width: 420px;
+            background: #fffcf9; /* Blanc doux */
+            border-radius: 40px 40px 40px 12px;
+            padding: 24px 22px;
+            border: 1px solid #ffe3e0;
+            box-shadow: 0 15px 30px rgba(180, 120, 120, 0.08);
+            color: #6e5656;
+            max-height: 92vh;
             overflow-y: auto;
             scrollbar-width: none;
         }
 
-        .letter::-webkit-scrollbar {
+        .carte::-webkit-scrollbar {
             display: none;
         }
 
-        /* ===== CACHET SIMPLE ===== */
-        .seal {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #e6a9a9; /* Rose corail doux */
-            border-radius: 50px;
-            padding: 5px 20px;
-            width: fit-content;
-            margin-bottom: 16px;
+        /* === ÉLÉMENTS SIMPLES === */
+        .cachet {
+            background: #e6b0b0;
             color: white;
-            font-size: 0.65rem;
-            letter-spacing: 5px;
+            padding: 4px 20px;
+            border-radius: 40px;
+            width: fit-content;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            box-shadow: 0 3px 0 #c2717a;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 16px;
+            border: 1px solid white;
             font-weight: 600;
+            box-shadow: 0 3px 0 #c28585;
         }
 
-        /* ===== PRÉNOMS ===== */
-        .name {
+        .prenom {
             font-size: 2.5rem;
             font-weight: 700;
+            color: #b1626b;
             line-height: 1;
-            color: #b35e68;
-            text-shadow: 0 2px 10px rgba(194, 113, 122, 0.1);
-            letter-spacing: -0.5px;
             margin-bottom: 2px;
         }
 
-        .surname {
-            font-size: 0.75rem;
-            color: #c2717a;
+        .nom {
+            font-size: 0.7rem;
+            color: #c28585;
             letter-spacing: 10px;
             text-transform: uppercase;
-            margin-bottom: 16px;
-            border-bottom: 1px solid #ffd9d7;
-            border-top: 1px solid #ffd9d7;
+            border-bottom: 1px solid #ffdedb;
+            border-top: 1px solid #ffdedb;
             padding: 6px 0;
             display: inline-block;
-            font-weight: 400;
+            margin-bottom: 14px;
         }
 
-        /* ===== MESSAGE - SIMPLIFIÉ, AÉRÉ ===== */
+        /* === MESSAGE TRÈS SIMPLE, SANS DÉCOR LOURD === */
         .message {
-            background: #fff9f7;
-            border-radius: 28px;
+            background: #fffaf8;
+            border-radius: 26px;
             padding: 22px 20px;
-            margin: 6px 0 14px;
+            margin: 8px 0 12px;
+            border: 1px solid #ffe9e6;
             line-height: 1.7;
             font-size: 0.95rem;
-            color: #735c5c;
-            border: 1px solid #ffe4e2;
-            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.05);
+            color: #6e5656;
         }
 
-        /* STYLES DE SURBRILLANCE SIMPLES */
-        .highlight {
-            background: #ffeae9;
-            padding: 2px 12px;
-            border-radius: 30px;
+        /* ACCENTS MINIMAUX */
+        .point-fort {
+            background: #fff0ee;
+            padding: 3px 14px;
+            border-radius: 40px;
             display: inline-block;
             font-weight: 600;
-            color: #b35e68;
-            border: 1px solid #ffd0cc;
+            color: #b1626b;
+            border: 1px solid #ffcec9;
             margin: 2px 0;
         }
 
-        .heart-line {
+        .trait {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin: 12px 0 8px;
-            color: #c2717a;
+            gap: 8px;
+            color: #c28585;
             font-size: 0.8rem;
+            margin: 12px 0;
         }
 
-        .strong {
-            font-size: 1.05rem;
+        .gros-texte {
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #b35e68;
-            background: #fff0ef;
-            padding: 5px 16px;
+            color: #b1626b;
+            background: #fff3f1;
+            padding: 6px 16px;
             border-radius: 50px;
             display: inline-block;
-            margin: 4px 0;
-            border: 1px dashed #c2717a;
+            margin: 5px 0;
+            border: 1px dashed #c28585;
         }
 
         .signature {
             text-align: right;
-            margin-top: 18px;
-            color: #b35e68;
+            margin-top: 16px;
+            color: #b1626b;
             font-size: 1.1rem;
-            letter-spacing: 2px;
-            border-top: 1px dashed #ffd0cc;
+            border-top: 1px dashed #ffd2cd;
             padding-top: 14px;
-            font-weight: 600;
         }
 
-        /* ===== GIFS - TAILLE FIXE, PAS DE CHARGEMENT LOURD ===== */
-        .gif-grid {
-            display: flex;
-            gap: 10px;
-            margin: 8px 0 10px;
-            justify-content: center;
-        }
-
-        .gif-item {
-            flex: 0 0 80px;
-            height: 80px;
-            background: #ffeae9;
-            border-radius: 20px;
-            padding: 4px;
-            border: 2px solid #ffe1df;
-            box-shadow: 0 5px 15px rgba(194, 113, 122, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #c2717a;
-        }
-
-        /* ===== ZONE CŒURS STATIQUE ===== */
-        .heart-zone {
+        /* PETIT CŒUR SIMPLE (PAS D'ANIMATION LOURDE) */
+        .coeur {
+            font-size: 1.8rem;
             text-align: center;
-            margin-top: 10px;
-            padding: 14px 16px;
-            background: #fff5f3;
-            border-radius: 40px;
-            border: 2px solid #ffe1df;
-            color: #735c5c;
-            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #c28585;
         }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            color: rgba(194, 113, 122, 0.3);
+        .pied {
+            color: rgba(180, 120, 120, 0.25);
             font-size: 0.5rem;
             text-align: center;
             margin-top: 12px;
             letter-spacing: 8px;
-            text-transform: uppercase;
-            border-top: 1px solid #ffe1df;
+            border-top: 1px solid #ffdedb;
             padding-top: 10px;
         }
 
-        /* ===== CŒUR BATTANT CSS PUR ===== */
-        .heart-beat {
-            font-size: 1.8rem;
-            display: block;
-            text-align: center;
-            margin-bottom: 6px;
-            color: #c2717a;
-            animation: beat 1.8s infinite;
+        /* === RESPONSIVE === */
+        @media (max-height: 650px) {
+            .carte { padding: 18px; }
+            .message { padding: 16px; }
         }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.05); }
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-height: 700px) {
-            .letter { padding: 20px; }
-            .message { padding: 16px; margin: 4px 0; }
-            .gif-item { flex: 0 0 70px; height: 70px; font-size: 1.8rem; }
-        }
-
-        @media (max-width: 380px) {
-            .letter { padding: 18px; }
-            .name { font-size: 2.1rem; }
-            .message { font-size: 0.9rem; padding: 16px; }
-            .surname { letter-spacing: 6px; }
-            .gif-item { flex: 0 0 65px; height: 65px; }
+        @media (max-width: 360px) {
+            .prenom { font-size: 2.1rem; }
+            .message { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CŒURS FLOTTANTS CSS (ULTRA LÉGER) -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-
-    <!-- ===== CARTE PRINCIPALE ===== -->
-    <div class="letter">
-
-        <!-- CACHET -->
-        <div class="seal">
-            ✦ POUR TOI ✦
+<div class="carte">
+    
+    <div class="cachet">POUR TOI</div>
+    
+    <div class="prenom">Stella</div>
+    <div class="nom">MARIE</div>
+    
+    <!-- MESSAGE SANS AUCUN CHARGEMENT EXTERNE -->
+    <div class="message">
+        <div class="coeur">🤍</div>
+        
+        Je suis pas venu te vendre un rêve parfait.<br>
+        Je suis pas venu te demander d'être à moi.<br><br>
+        
+        <div class="trait"><span>🌸</span> juste te dire <span>🌸</span></div>
+        <div style="text-align: center;"><span class="gros-texte">je serai là.</span></div><br>
+        
+        Dans tes jours de soleil.<br>
+        Dans tes jours d'orage.<br>
+        Dans tes rires, dans tes silences.<br><br>
+        
+        <div class="trait"><span>💗</span> Je crois en toi <span>💗</span></div>
+        <span class="point-fort">En TOI.</span> Celle qui doute, qui avance,<br>
+        qui tombe, qui se relève.<br><br>
+        
+        <span class="point-fort">Parce que je vois déjà qui tu es.</span><br><br>
+        
+        <div class="trait"><span>✨</span> Apprendre à te connaître <span>✨</span></div>
+        Prendre le temps. Sans forcer.<br>
+        <span class="point-fort">Sans rien précipiter.</span><br><br>
+        
+        Pas par hasard. Pas pour un soir.<br>
+        <span class="point-fort">Pas juste pour un 14 février.</span><br><br>
+        
+        <div style="text-align: center;">
+            <span class="gros-texte">Pour les jours qui comptent.</span><br>
+            <span class="gros-texte" style="margin-top: 6px;">Pour ceux qui compteront.</span>
+        </div><br>
+        
+        Voilà. C'est tout.<br>
+        Je voulais juste que tu saches.<br>
+        
+        <div class="signature">
+            — SERAPHIN.K
         </div>
-
-        <!-- PRÉNOMS -->
-        <div class="name">Stella</div>
-        <div class="surname">MARIE</div>
-
-        <!-- ===== MESSAGE OPTIMISÉ ===== -->
-        <div class="message">
-            <span class="heart-beat">🤍</span>
-            
-            Je suis pas venu te vendre un rêve parfait.<br>
-            Je suis pas venu te demander d'être à moi.<br><br>
-            
-            <span class="heart-line">
-                <span>🌸</span> Je suis juste venu te dire <span>🌸</span>
-            </span>
-            
-            <div style="text-align: center; margin: 10px 0;">
-                <span class="strong">je serai là.</span>
-            </div><br>
-            
-            Dans tes jours de soleil.<br>
-            Dans tes jours d'orage.<br>
-            Dans tes rires, dans tes silences.<br><br>
-            
-            <span class="heart-line">
-                <span>💗</span> Je crois en toi <span>💗</span>
-            </span><br>
-            
-            Pas en une version idéale.<br>
-            <span class="highlight">En TOI.</span> Celle qui doute, qui avance,<br>
-            qui tombe, qui se relève.<br><br>
-            
-            Je crois en ce que tu deviendras.<br>
-            <span class="highlight">Parce que je vois déjà qui tu es.</span><br><br>
-            
-            <span class="heart-line">
-                <span>✨</span> Apprendre à te connaître <span>✨</span>
-            </span><br>
-            
-            Prendre le temps. Sans forcer.<br>
-            <span class="highlight">Sans rien précipiter.</span><br><br>
-            
-            Pas par hasard. Pas pour un soir.<br>
-            <span class="highlight">Pas juste pour un 14 février.</span><br><br>
-            
-            <div style="text-align: center; margin: 12px 0 8px;">
-                <span class="strong" style="background: #ffe4e2;">Pour les jours qui comptent.</span><br>
-                <span class="strong" style="background: #ffefed; margin-top: 6px;">Pour ceux qui compteront.</span>
-            </div><br>
-            
-            Voilà. C'est tout.<br>
-            Je voulais juste que tu saches.<br>
-            
-            <div class="signature">
-                — SERAPHIN.K
-            </div>
-        </div>
-
-        <!-- GIFS SIMPLIFIÉS - PAS DE CHARGEMENT EXTERNE -->
-        <div class="gif-grid">
-            <div class="gif-item">🐱❤️</div>
-            <div class="gif-item">❤️🤍❤️</div>
-            <div class="gif-item">🐻🤍</div>
-        </div>
-
-        <!-- ZONE CŒURS SIMPLE -->
-        <div class="heart-zone" id="heartZone">
-            <span style="font-size: 1.6rem; margin-bottom: 2px; color: #c2717a;">❤️ 🤍 ❤️</span>
-            <span style="display: block; font-weight: 500; color: #735c5c;">des cœurs pour toi, Stella</span>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            ✦ STELLA · SERAPHIN ✦
-        </div>
-
+    </div>
+    
+    <!-- RIEN D'AUTRE. PAS D'IMAGES, PAS DE GIFS, PAS DE CANVAS -->
+    
+    <div class="pied">
+        STELLA · SERAPHIN
     </div>
 
-    <script>
-        (function() {
-            "use strict";
+</div>
 
-            // ===== CŒURS FLOTTANTS CSS (5x plus léger que canvas) =====
-            function createFloatingHearts() {
-                const container = document.getElementById('floatingHearts');
-                const count = 15; // Seulement 15 cœurs, ultra léger
-                
-                for (let i = 0; i < count; i++) {
-                    const heart = document.createElement('div');
-                    heart.className = 'float-heart';
-                    heart.innerHTML = Math.random() > 0.5 ? '❤️' : '🤍';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = (Math.random() * 5) + 's';
-                    heart.style.animationDuration = (Math.floor(Math.random() * 6) + 6) + 's';
-                    heart.style.fontSize = (Math.floor(Math.random() * 16) + 16) + 'px';
-                    heart.style.opacity = '0.2';
-                    container.appendChild(heart);
-                }
-            }
+<!-- PAS DE JAVASCRIPT DU TOUT. ZÉRO. RIEN. -->
 
-            // ===== CHANGEMENT DE MESSAGE DANS LA ZONE =====
-            function initHeartZone() {
-                const zone = document.getElementById('heartZone');
-                const messages = [
-                    '❤️ 🤍 ❤️',
-                    '🤍 ❤️ 🤍',
-                    '❤️ ❤️ 🤍',
-                    '🤍 🤍 ❤️'
-                ];
-                let index = 0;
-                
-                setInterval(() => {
-                    const heartSpan = zone.querySelector('span:first-child');
-                    if (heartSpan) {
-                        heartSpan.style.opacity = '0.7';
-                        setTimeout(() => {
-                            heartSpan.innerHTML = messages[index];
-                            heartSpan.style.opacity = '1';
-                        }, 100);
-                    }
-                    index = (index + 1) % messages.length;
-                }, 3000);
-            }
-
-            // ===== INIT =====
-            window.addEventListener('DOMContentLoaded', function() {
-                createFloatingHearts();
-                initHeartZone();
-                
-                // Blocage scroll
-                document.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-            });
-
-        })();
-    </script>
 </body>
 </html>
